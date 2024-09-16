@@ -1,4 +1,5 @@
 import DefaultLayout from "@/layouts/default-layout"
+import HomePage from "@/pages/home-page"
 import Login from "@/pages/login"
 
 export const ROUTE_PATHS = {
@@ -13,5 +14,11 @@ export const routes = [
         name: 'Login',
         component: Login,
         layout: DefaultLayout
-    }
+    },
+    {
+        path: ROUTE_PATHS.ROOT,
+        name: 'HomePage',
+        component: HomePage,
+        layout: DefaultLayout
+    },
 ]
