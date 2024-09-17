@@ -1,6 +1,7 @@
 import { Layout } from "antd"
-import { Content, Footer } from "antd/es/layout/layout"
+import { Content } from "antd/es/layout/layout"
 import Navbar from "./layout-ui/navbar"
+import Footer from "./layout-ui/footer"
 
 export default function DefaultLayout({ children }: { children: React.ReactNode }) {
     return (

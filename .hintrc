@@ -5,6 +5,12 @@
   "hints": {
     "typescript-config/is-valid": "off",
     "typescript-config/consistent-casing": "off",
-    "typescript-config/strict": "off"
+    "typescript-config/strict": "off",
+    "axe/aria": [
+      "default",
+      {
+        "aria-valid-attr-value": "off"
+      }
+    ]
   }
 }
