@@ -1,9 +1,10 @@
 import { useAuth } from '@/hooks/use-auth'
+import { GoogleLogin } from '@react-oauth/google'
 import React, { useEffect, useState } from 'react'
 import { FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa'
 
 export default function Login() {
-  const { login } = useAuth()
+  const { login, loginWithGoogle } = useAuth()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -37,12 +38,21 @@ export default function Login() {
     }
   }
 
-  const handleSubmit =  (e: { preventDefault: () => void }) => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault()
     if (!emailError && !passwordError) {
       setIsLoading(true)
       login({ email, password })
+      setIsLoading(false)
     }
+  }
+
+  const handleLoginGoogle = () => {
+    loginWithGoogle()
+  }
+
+  const handleLoginFailure = (error) => {
+    console.error('Google Login Error:', error)
   }
 
   useEffect(() => {
@@ -116,6 +126,7 @@ export default function Login() {
               </p>
             )}
           </div>
+
           <div>
             <button
               type="submit"
@@ -133,6 +144,12 @@ export default function Login() {
             </button>
           </div>
         </form>
+        <div className='bg-blue-600 p-4 mt-4 rounded-xl shadow-lg w-full max-w-md transition-all duration-300 ease-in-out transform hover:scale-105 flex justify-center'>
+          <GoogleLogin
+            onSuccess={handleLoginGoogle}
+            onFailure={handleLoginFailure}
+          />
+        </div>
       </div>
     </div>
   )

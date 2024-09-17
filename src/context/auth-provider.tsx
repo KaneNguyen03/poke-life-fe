@@ -32,7 +32,24 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     try {
       setSubmitting(true)
       const response = await authApi.signIn(email, password)
-      console.log("🚀 Kha ne ~ response:", response)
+      localStorage.setItem(TOKEN_KEY, response.access_token)
+      localStorage.setItem(REFRESH_TOKEN_KEY, response.refresh_token)
+      setSignInSuccess(true)
+      return response
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      setError(error)
+      setSubmitting(false)
+      toast.error(error.message, {
+        theme: 'dark'
+      })
+    }
+  }
+
+  async function signInWithGoogle(): Promise<Token | undefined> {
+    try {
+      setSubmitting(true)
+      const response = await authApi.signInWithGoogle()
       localStorage.setItem(TOKEN_KEY, response.access_token)
       localStorage.setItem(REFRESH_TOKEN_KEY, response.refresh_token)
       setSignInSuccess(true)
@@ -81,8 +98,11 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         submitting,
         loadingInitial,
         error,
-        login: ({ email, password }: { email: string, password: string }): Promise<Token> => {
+        login: ({ email, password }: { email: string, password: string }): Promise<Token | undefined> => {
           return signIn({ email, password })
+        },
+        loginWithGoogle: (): Promise<Token | undefined> => { // Modify the return type to Promise<Token | undefined>
+          return signInWithGoogle()
         },
         logout
       }
