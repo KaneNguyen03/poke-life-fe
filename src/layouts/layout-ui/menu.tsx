@@ -5,7 +5,6 @@ import { useEffect, useState } from "react"
 export default function Menu() {
     const [food, setFood] = useState<APIFoodResponse>()
 
-    console.log("🚀 Kha ne ~ food:", food)
 
     const recipes = [
         {
