@@ -2,6 +2,8 @@ import { Button } from "antd"
 import { useState } from "react"
 import { FaShoppingCart, FaTimes, FaUser } from "react-icons/fa"
 import { Link } from "react-router-dom"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -22,7 +24,11 @@ export default function Navbar() {
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300"
                     >
-                        {isMenuOpen ? 'Close Menu' : 'Open Menu'}
+                        {isMenuOpen ? (
+                            <span>Close Menu</span>
+                        ) : (
+                            <FontAwesomeIcon icon={faBars} className="w-4 h-4" />
+                        )}
                     </button>
                 </div>
             </div>

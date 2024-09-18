@@ -1,4 +1,12 @@
+import foodApi from "@/services/food"
+import { APIFoodResponse } from "@/types"
+import { useEffect, useState } from "react"
+
 export default function Menu() {
+    const [food, setFood] = useState<APIFoodResponse>()
+
+    console.log("🚀 Kha ne ~ food:", food)
+
     const recipes = [
         {
             title: "Quinoa Salad Bowl",
@@ -26,18 +34,31 @@ export default function Menu() {
         }
     ]
 
-    const RecipeCard = ({ title, image, time, difficulty }: { title: string, image: string, time: string, difficulty: string }) => {
+    const fetchFood = async () => {
+        const food = await foodApi.getAllFood()
+        setFood(food)
+    }
+
+    useEffect(() => {
+        fetchFood()
+    }, [])
+
+    const RecipeCard = ({ Name, Image, Description, Calories }: { Name: string, Image: string, Description: string, Calories: number }) => {
         return (
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src={image} alt={title} className="w-full h-48 object-cover" />
-                <div className="p-4">
-                    <h3 className="text-xl font-semibold mb-2">{title}</h3>
-                    <div className="flex justify-between text-sm text-gray-600">
-                        <span>{time}</span>
-                        <span>{difficulty}</span>
+            <div className="bg-white rounded-lg shadow-md overflow-hidden w-72 h-96">
+                <img src={Image} alt={Name} className="w-full h-1/2 object-cover" />
+                <div className="p-4 h-1/2 flex flex-col justify-between">
+                    <div>
+                        <h3 className="text-xl font-semibold mb-2">{Name}</h3>
+                        <div className="flex justify-between text-sm text-gray-600">
+                            <span>{Description}</span>
+                            <span>{Calories} calories</span>
+                        </div>
                     </div>
-                    <div className="flex justify-end p-2 mt-2">
-                        <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300">Order</button>
+                    <div className="flex justify-end mt-4">
+                        <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                            Order
+                        </button>
                     </div>
                 </div>
             </div>
@@ -49,8 +70,8 @@ export default function Menu() {
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl font-bold text-center mb-8">Featured Recipes</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {recipes.map((recipe, index) => (
-                        <RecipeCard key={index} {...recipe} />
+                    {food?.map((item, index) => (
+                        <RecipeCard key={index} {...item} />
                     ))}
                 </div>
             </div>

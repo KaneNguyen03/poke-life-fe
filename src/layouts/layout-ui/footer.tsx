@@ -1,30 +1,7 @@
 export default function Footer() {
     return (
-        // <footer className="w-full text-white p-2">
-        //     <div className="container mx-auto flex flex-col items-center">
-        //         <div className="cta-button-inner relative">
-        //             <div className="cta-button-img-wrapper relative rounded-full overflow-hidden">
-        //                 <img
-        //                     decoding="async"
-        //                     srcSet="https://framerusercontent.com/images/0wlkAl8VLrGKPjfVaKOnHICJSEE.png?scale-down-to=512 512w, https://framerusercontent.com/images/0wlkAl8VLrGKPjfVaKOnHICJSEE.png?scale-down-to=1024 1024w, https://framerusercontent.com/images/0wlkAl8VLrGKPjfVaKOnHICJSEE.png 1961w"
-        //                     src="https://framerusercontent.com/images/0wlkAl8VLrGKPjfVaKOnHICJSEE.png"
-        //                     alt="Call to Action"
-        //                     className="block w-44 object-cover rounded-full"
-        //                 />
-        //             </div>
-        //         </div>
-        //         <div className="mt-2 text-center">
-        //             <p className="text-lg mb-2">
-        //                 <a className="text-orange-500 underline" href="mailto:mam.eatclean@gmail.com" target="_blank" rel="noopener">
-        //                     mam.eatclean@gmail.com
-        //                 </a>
-        //             </p>
-        //         </div>
-        //     </div>
-        // </footer>
-
-
-        <footer className="bg-green-100 text-white py-8">
+    
+        <footer className="bg-green-100 text-black py-8">
             <div className="container mx-auto px-4">
                 <div className="flex flex-wrap justify-between">
                     <div className="w-full md:w-1/4 mb-6 md:mb-0">

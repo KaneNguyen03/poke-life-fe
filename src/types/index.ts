@@ -40,3 +40,12 @@ export type AuthContextType = {
     logout: () => Promise<void>
 }
 
+export type APIFoodResponse = {
+    FoodID: string,
+    Name: string,
+    Description: string,
+    Price: number,
+    Calories: number,
+    CreatedAt: string,
+    UpdatedAt: string
+}

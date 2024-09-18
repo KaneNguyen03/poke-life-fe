@@ -8,7 +8,7 @@ export default function Hero() {
                     className="w-full h-full object-cover"
                 />
             </div>
-            <div className="relative z-10 text-center text-white">
+            <div className="relative z-10 text-center text-black">
                 <h2 className="text-5xl font-bold mb-4">Eat Clean, Live Better</h2>
                 <p className="text-xl mb-8">Discover delicious recipes and healthy living tips</p>
                 <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">

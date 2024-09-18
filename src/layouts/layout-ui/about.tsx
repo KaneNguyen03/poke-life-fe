@@ -1,7 +1,7 @@
 
 export default function About() {
-    return (
-        <div className="bg-green-50 py-16">
+  return (
+    <div className="bg-green-50 py-16">
       <div className="container mx-auto px-4">
         <section className="mb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -35,8 +35,36 @@ export default function About() {
             </div>
           </div>
         </section>
+        <section className="text-center mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="bg-white bg-opacity-50 p-6 rounded-lg shadow-md">
+              <h3 className="text-2xl font-semibold mb-2 text-green-700">Yummy</h3>
+              <p className="text-md text-gray-700">
+                Tại MÂM, chúng tôi không chỉ chú trọng đến sức khỏe mà còn đảm bảo mỗi món ăn đều ngon miệng và hấp dẫn, khiến bạn thưởng thức một cách trọn vẹn nhất.
+              </p>
+            </div>
+            <div className="bg-white bg-opacity-50 p-6 rounded-lg shadow-md">
+              <h3 className="text-2xl font-semibold mb-2 text-green-700">Healthy</h3>
+              <p className="text-md text-gray-700">
+                We are committed to using fresh ingredients, no preservatives and cooking in the eatclean style, bringing you nutritious and healthy meals.
+              </p>
+            </div>
+            <div className="bg-white bg-opacity-50 p-6 rounded-lg shadow-md">
+              <h3 className="text-2xl font-semibold mb-2 text-green-700">Balance</h3>
+              <p className="text-md text-gray-700">
+                Each dish at MÂM is designed to provide all the necessary nutrients, helping you maintain a balanced and healthy lifestyle.
+              </p>
+            </div>
+            <div className="bg-white bg-opacity-50 p-6 rounded-lg shadow-md">
+              <h3 className="text-2xl font-semibold mb-2 text-green-700">Clean</h3>
+              <p className="text-md text-gray-700">
+                We always put hygiene standards first, from choosing ingredients to processing, ensuring every meal is safe and pure.
+              </p>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
-    )
+  )
 }
 
