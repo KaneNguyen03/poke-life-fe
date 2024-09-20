@@ -1,7 +1,7 @@
+import Background from '@/assets/background.jpg'
 import { useAuth } from '@/hooks/use-auth'
 import React, { useEffect, useState } from 'react'
 import { FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa'
-import Background from '@/assets/background.jpg'
 import { toast } from 'react-toastify'
 
 export default function Login() {
