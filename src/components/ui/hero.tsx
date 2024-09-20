@@ -1,3 +1,5 @@
+import { Link } from "react-scroll"
+
 export default function Hero() {
     return (
         <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -12,7 +14,7 @@ export default function Hero() {
                 <h2 className="text-5xl font-bold mb-4">Eat Clean, Live Better</h2>
                 <p className="text-xl mb-8">Discover delicious recipes and healthy living tips</p>
                 <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">
-                    Get Started
+                    <Link to="about" smooth duration={500} className="text-gray-700 hover:text-gray-900" >Get Started</Link>
                 </button>
             </div>
         </section>

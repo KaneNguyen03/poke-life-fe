@@ -3,10 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Button } from "antd"
 import { useState } from "react"
 import { FaShoppingCart, FaTimes, FaUser } from "react-icons/fa"
-import { Link } from "react-router-dom"
+import { Link } from "react-scroll" // Updated import
+import { useDispatch } from 'react-redux'
+import CartModal from '@/components/card-modal'
+import { toggleModal } from '@/store/slice/cart-slice'
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const dispatch = useDispatch()
+
     return (
         <header className="bg-green-50 shadow-md">
             <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -44,27 +49,36 @@ export default function Navbar() {
                         <nav className="mt-8">
                             <ul className="space-y-4">
                                 <li>
-                                    <Link to="/" className="text-gray-700 hover:text-gray-900">Home</Link>
+                                    <Link to="hero" smooth duration={500} className="text-gray-700 hover:text-gray-900" onClick={() => setIsMenuOpen(false)}>Home</Link>
                                 </li>
                                 <li>
-                                    <Link to="/menu" className="text-gray-700 hover:text-gray-900">Menu</Link>
+                                    <Link to="menu" smooth duration={500} className="text-gray-700 hover:text-gray-900" onClick={() => setIsMenuOpen(false)}>Menu</Link>
                                 </li>
                                 <li>
-                                    <Link to="/about" className="text-gray-700 hover:text-gray-900">About</Link>
+                                    <Link to="about" smooth duration={500} className="text-gray-700 hover:text-gray-900" onClick={() => setIsMenuOpen(false)}>About</Link>
                                 </li>
                                 <li>
-                                    <Link to="/contact" className="text-gray-700 hover:text-gray-900">Contact</Link>
+                                    <Link to="custom-dishes" smooth duration={500} className="text-gray-700 hover:text-gray-900" onClick={() => setIsMenuOpen(false)}>Custom Dishes</Link>
+                                </li>
+                                <li>
+                                    <Link to="workouts" smooth duration={500} className="text-gray-700 hover:text-gray-900" onClick={() => setIsMenuOpen(false)}>Workouts</Link>
                                 </li>
                             </ul>
                         </nav>
                         <div className="mt-8 flex justify-around">
                             <FaUser className="text-green-600 hover:text-green-400 cursor-pointer" />
-                            <FaShoppingCart className="text-green-600 hover:text-green-400 cursor-pointer" />
+                            <FaShoppingCart
+                                className="text-green-600 hover:text-green-400 cursor-pointer"
+                                onClick={() => {
+                                    dispatch(toggleModal())
+                                    setIsMenuOpen(false)
+                                }}
+                            />
                         </div>
                     </div>
                 </div>
             )}
-
+            <CartModal />
         </header>
     )
 }

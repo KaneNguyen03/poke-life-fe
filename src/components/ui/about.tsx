@@ -1,3 +1,4 @@
+import { Link } from "react-scroll"
 
 export default function About() {
   return (
@@ -29,7 +30,7 @@ export default function About() {
               </p>
               <div className="flex justify-end">
                 <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">
-                  MORE ABOUT US
+                  <Link to="menu" smooth duration={500} className="">MORE ABOUT US</Link>
                 </button>
               </div>
             </div>

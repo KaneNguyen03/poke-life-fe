@@ -1,6 +1,7 @@
+import { Link } from "react-scroll"
+
 export default function Footer() {
     return (
-    
         <footer className="bg-green-100 text-black py-8">
             <div className="container mx-auto px-4">
                 <div className="flex flex-wrap justify-between">
@@ -18,12 +19,22 @@ export default function Footer() {
                     </div>
                     <div className="w-full md:w-1/4 mb-6 md:mb-0">
                         <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-                        <ul className="space-y-2">
-                            <li><a href="#" className="hover:text-green-300">Home</a></li>
-                            <li><a href="#" className="hover:text-green-300">Recipes</a></li>
-                            <li><a href="#" className="hover:text-green-300">Meal Plans</a></li>
-                            <li><a href="#" className="hover:text-green-300">Workouts</a></li>
-                            <li><a href="#" className="hover:text-green-300">Community</a></li>
+                        <ul className="space-y-4">
+                            <li>
+                                <Link to="hero" smooth duration={500} className="text-gray-700 hover:text-gray-900">Home</Link>
+                            </li>
+                            <li>
+                                <Link to="menu" smooth duration={500} className="text-gray-700 hover:text-gray-900">Menu</Link>
+                            </li>
+                            <li>
+                                <Link to="about" smooth duration={500} className="text-gray-700 hover:text-gray-900">About</Link>
+                            </li>
+                            <li>
+                                <Link to="custom-dishes" smooth duration={500} className="text-gray-700 hover:text-gray-900">Custom Dishes</Link>
+                            </li>
+                            <li>
+                                <Link to="workouts" smooth duration={500} className="text-gray-700 hover:text-gray-900" >Workouts</Link>
+                            </li>
                         </ul>
                     </div>
                     <div className="w-full md:w-1/4 mb-6 md:mb-0">

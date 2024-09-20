@@ -6,6 +6,8 @@ import { Provider } from 'react-redux'
 import { store } from './store/index.ts'
 import { BrowserRouter } from 'react-router-dom'
 import AuthProvider from './context/auth-provider.tsx'
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -13,6 +15,7 @@ createRoot(document.getElementById('root')!).render(
       <Provider store={store}>
         <AuthProvider>
           <App />
+          <ToastContainer />
         </AuthProvider>
       </Provider>
     </BrowserRouter>
