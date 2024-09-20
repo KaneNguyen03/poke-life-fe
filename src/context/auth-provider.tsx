@@ -23,7 +23,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 
   const getUser = async () => {
     const data = await authApi.getCurrentUser()
-    setCurrentUser(data)
+    setCurrentUser(data as AuthUser | null | undefined)
     setSubmitting(false)
     setLoadingInitial(false)
   }
@@ -82,7 +82,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         loadingInitial,
         error,
         login: ({ email, password }: { email: string, password: string }): Promise<Token> => {
-          return signIn({ email, password })
+          return signIn({ email, password }) as Promise<Token>
         },
         logout
       }

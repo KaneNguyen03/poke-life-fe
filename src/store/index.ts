@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit"
 
 // Placeholder reducer
-const placeholderReducer = (state = {}, action: any) => state
+const placeholderReducer = (state = {}) => state
 
 export const store = configureStore({
     reducer: {
