@@ -4,6 +4,7 @@ interface CartItem {
     Name: string
     Image: string
     quantity: number
+    Price: number
 }
 
 interface CartState {

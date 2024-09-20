@@ -37,11 +37,12 @@ export default function Login() {
     }
   }
 
-  const handleSubmit =  (e: { preventDefault: () => void }) => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault()
     if (!emailError && !passwordError) {
       setIsLoading(true)
       login({ email, password })
+      setIsLoading(false)
     }
   }
 
