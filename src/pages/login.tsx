@@ -5,7 +5,7 @@ import { FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa'
 import { toast } from 'react-toastify'
 
 export default function Login() {
-  const { login } = useAuth()
+  const { login, user } = useAuth()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -21,7 +21,9 @@ export default function Login() {
     return re.test(String(email).toLowerCase())
   }
 
-
+  if (user) {
+    window.location.href = "/"
+  }
 
   const handleEmailChange = (e: { target: { value: string } }) => {
     setEmail(e.target.value)
