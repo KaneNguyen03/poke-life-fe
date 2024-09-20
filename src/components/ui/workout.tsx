@@ -9,9 +9,11 @@ export const WorkoutSection = () => {
                         <div className="p-4">
                             <h3 className="text-xl font-semibold mb-2">Yoga for Beginners</h3>
                             <p className="text-gray-600 mb-4">Start your day with a relaxing yoga session</p>
-                            <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300">
-                                Watch Video
-                            </button>
+                            <a href="https://www.youtube.com/watch?v=v7AYKMP6rOE" target="_blank" rel="noopener noreferrer">
+                                <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                    Watch Video
+                                </button>
+                            </a>
                         </div>
                     </div>
                     <div className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -19,9 +21,11 @@ export const WorkoutSection = () => {
                         <div className="p-4">
                             <h3 className="text-xl font-semibold mb-2">30-Minute HIIT</h3>
                             <p className="text-gray-600 mb-4">Burn calories with this high-intensity workout</p>
-                            <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300">
-                                Watch Video
-                            </button>
+                            <a href="https://www.youtube.com/watch?v=ml6cT4AZdqI" target="_blank" rel="noopener noreferrer">
+                                <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                    Watch Video
+                                </button>
+                            </a>
                         </div>
                     </div>
                     <div className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -29,9 +33,11 @@ export const WorkoutSection = () => {
                         <div className="p-4">
                             <h3 className="text-xl font-semibold mb-2">Strength Training</h3>
                             <p className="text-gray-600 mb-4">Build muscle with our strength training routine</p>
-                            <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300">
-                                Watch Video
-                            </button>
+                            <a href="https://www.youtube.com/watch?v=0hYDDsRjwks" target="_blank" rel="noopener noreferrer">
+                                <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                                    Watch Video
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>

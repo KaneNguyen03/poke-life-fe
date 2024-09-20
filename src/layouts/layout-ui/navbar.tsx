@@ -9,10 +9,11 @@ import CartModal from '@/components/card-modal'
 import { toggleModal } from '@/store/slice/cart-slice'
 import { useAuth } from '@/hooks/use-auth'
 import Logo from "@/assets/logo.jpg"
+import { toast } from 'react-toastify'
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const { user } = useAuth()
+    const { user, logout } = useAuth()
     const dispatch = useDispatch()
 
     return (
@@ -80,7 +81,10 @@ export default function Navbar() {
                                     </button>
                                     <button
                                         className='flex justify-center gap-2 items-center p-2 border border-red-600 rounded hover:bg-red-100 transition'
-                                        onClick={() => console.log("hello")}
+                                        onClick={() => {
+                                            logout()
+                                            toast.success('Logged out successfully!')
+                                        }}
                                     >
                                         <p className='underline-offset-2 text-red-600'>Logout</p>
                                     </button>

@@ -1,7 +1,12 @@
+import AuthModal from '@/components/ui/auth-modal'
+import BackShopping from '@/components/ui/back-shopping'
+import { useAuth } from '@/hooks/use-auth'
 import { RootState } from '@/store'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { FaArrowLeft, FaMoneyBillWave, FaQrcode } from "react-icons/fa"
 import { useSelector } from "react-redux"
+import { toast } from 'react-toastify'
+
 
 const Checkout = () => {
     const [selectedPayment, setSelectedPayment] = useState("cod")
@@ -11,9 +16,10 @@ const Checkout = () => {
         address: "",
         phoneNumber: ""
     })
-
-    // Accessing cart items from Redux store
+    const { user } = useAuth()
     const cartItems = useSelector((state: RootState) => state.cart.items)
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isModalBackOpen, setIsModalBackOpen] = useState(false)
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
@@ -22,9 +28,31 @@ const Checkout = () => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        if (user == null) {
+            setIsModalOpen(true)
+            return
+        }
+
+        if (cartItems.length === 0) {
+            setIsModalBackOpen(true)
+            return
+        }
+
         console.log("Order submitted:", formData)
         alert("Order placed successfully!")
+
     }
+
+    useEffect(() => {
+        if (user) {
+            setFormData({
+                name: user.Username || "",
+                email: user.Email || "",
+                address: user.Address || "",
+                phoneNumber: user.PhoneNumber || ""
+            })
+        }
+    }, [user])
 
     return (
         <div className="min-h-screen bg-green-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -39,7 +67,6 @@ const Checkout = () => {
                     </button>
                 </div>
                 <h1 className="text-3xl font-extrabold text-green-800 mb-8">Checkout</h1>
-                {/* Display cart items */}
                 <div className="bg-white shadow-md rounded-lg p-6 mb-6">
                     <h2 className="text-xl font-semibold mb-4">Your Cart</h2>
                     {cartItems.length > 0 ? (
@@ -172,6 +199,16 @@ const Checkout = () => {
                     </div>
                 </form>
             </div>
+
+            <AuthModal
+                isOpen={isModalOpen}
+                onRequestClose={() => setIsModalOpen(false)}
+            />
+
+            <BackShopping
+                isOpen={isModalBackOpen}
+                onRequestClose={() => setIsModalBackOpen(false)}
+            />
         </div>
     )
 }

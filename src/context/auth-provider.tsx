@@ -48,7 +48,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 
   const logout = async () => {
     const resp = await authApi.logOut()
-    if (resp.msg === 'logout') {
+    if (resp) {
       localStorage.clear()
       window.location.reload()
     } else {

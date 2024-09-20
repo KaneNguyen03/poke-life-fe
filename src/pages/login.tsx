@@ -2,9 +2,10 @@ import { useAuth } from '@/hooks/use-auth'
 import React, { useEffect, useState } from 'react'
 import { FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa'
 import Background from '@/assets/background.jpg'
+import { toast } from 'react-toastify'
 
 export default function Login() {
-  const { login } = useAuth()
+  const { login, user } = useAuth()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -18,6 +19,10 @@ export default function Login() {
   const validateEmail = (email: string) => {
     const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
     return re.test(String(email).toLowerCase())
+  }
+
+  if (user) {
+    window.location.href = "/"
   }
 
   const handleEmailChange = (e: { target: { value: string } }) => {
@@ -38,11 +43,13 @@ export default function Login() {
     }
   }
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
     if (!emailError && !passwordError) {
       setIsLoading(true)
-      login({ email, password })
+      const result = await login({ email, password })
+      if (result)
+        await toast.success('Login successful')
       setIsLoading(false)
     }
   }

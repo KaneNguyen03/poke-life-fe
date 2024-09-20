@@ -41,28 +41,11 @@ export default function Footer() {
                     <div className="w-full md:w-1/4 mb-6 md:mb-0">
                         <h4 className="text-lg font-semibold mb-4">Connect</h4>
                         <ul className="space-y-2">
-                            <li><a href="#" className="hover:text-green-300">Facebook</a></li>
+                            <li><a href="https://www.facebook.com/profile.php?id=61566138359714&mibextid=JRoKGi" className="hover:text-green-300">Facebook</a></li>
                             <li><a href="#" className="hover:text-green-300">Instagram</a></li>
                             <li><a href="#" className="hover:text-green-300">Twitter</a></li>
                             <li><a href="#" className="hover:text-green-300">YouTube</a></li>
                         </ul>
-                    </div>
-                    <div className="w-full md:w-1/4">
-                        <h4 className="text-lg font-semibold mb-4">Newsletter</h4>
-                        <p className="mb-4">Subscribe to our newsletter for the latest updates and tips.</p>
-                        <form className="flex">
-                            <input
-                                type="email"
-                                placeholder="Your email"
-                                className="bg-green-700 text-white px-4 py-2 rounded-l focus:outline-none focus:ring-2 focus:ring-green-500"
-                            />
-                            <button
-                                type="submit"
-                                className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-r transition duration-300"
-                            >
-                                Subscribe
-                            </button>
-                        </form>
                     </div>
                 </div>
                 <div className="mt-8 text-center">
