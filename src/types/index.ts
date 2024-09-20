@@ -43,6 +43,7 @@ export type AuthContextType = {
 export type APIFoodResponse = {
     FoodID: string,
     Name: string,
+    Image: string,
     Description: string,
     Price: number,
     Calories: number,
