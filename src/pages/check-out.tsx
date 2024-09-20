@@ -5,8 +5,6 @@ import { RootState } from '@/store'
 import { useEffect, useState } from "react"
 import { FaArrowLeft, FaMoneyBillWave, FaQrcode } from "react-icons/fa"
 import { useSelector } from "react-redux"
-import { toast } from 'react-toastify'
-
 
 const Checkout = () => {
     const [selectedPayment, setSelectedPayment] = useState("cod")
