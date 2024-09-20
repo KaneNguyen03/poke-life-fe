@@ -1,6 +1,7 @@
 import { useAuth } from '@/hooks/use-auth'
 import React, { useEffect, useState } from 'react'
 import { FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa'
+import Background from '@/assets/background.jpg'
 
 export default function Login() {
   const { login } = useAuth()
@@ -54,7 +55,10 @@ export default function Login() {
   }, [])
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 p-4">
+    <div
+      className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 p-4"
+      style={{ backgroundImage: `url(${Background})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+    >
       <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md transition-all duration-300 ease-in-out transform hover:scale-105">
         <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Login</h2>
         <form onSubmit={handleSubmit} className="space-y-6">

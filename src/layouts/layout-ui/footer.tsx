@@ -13,9 +13,10 @@ export default function Footer() {
                                 src="https://framerusercontent.com/images/0wlkAl8VLrGKPjfVaKOnHICJSEE.png"
                                 alt="Call to Action"
                                 className="block w-44 object-cover rounded-full"
+                                onClick={() => window.location.href = "/"}
                             />
                         </h3>
-                        <p className="">Empowering you to live a healthier, happier life through clean eating and fitness.</p>
+                        <p className="mr-12">Empowering you to live a healthier, happier life through clean eating and fitness.</p>
                     </div>
                     <div className="w-full md:w-1/4 mb-6 md:mb-0">
                         <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
@@ -65,7 +66,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="mt-8 text-center">
-                    <p>&copy; 2023 Mam for eat clean food. All rights reserved.</p>
+                    <p>&copy; 2024 Mam for eat clean food. All rights reserved.</p>
                 </div>
             </div>
         </footer>

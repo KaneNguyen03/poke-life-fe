@@ -10,7 +10,7 @@ export const Authcontext = createContext<AuthContextType | undefined>(undefined)
 type AuthProviderProps = PropsWithChildren
 
 export default function AuthProvider({ children }: AuthProviderProps) {
-  const [getCurrentUser, setCurrentUser] = useState<AuthUser | null>()
+  const [user, setCurrentUser] = useState<AuthUser | null>()
   const [submitting, setSubmitting] = useState(false)
   const [signInSuccess, setSignInSuccess] = useState(false)
   const [loadingInitial, setLoadingInitial] = useState(true)
@@ -32,7 +32,6 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     try {
       setSubmitting(true)
       const response = await authApi.signIn(email, password)
-      console.log("🚀 Kha ne ~ response:", response)
       localStorage.setItem(TOKEN_KEY, response.access_token)
       localStorage.setItem(REFRESH_TOKEN_KEY, response.refresh_token)
       setSignInSuccess(true)
@@ -77,7 +76,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const memoedValue = useMemo(
     () => {
       return {
-        user: getCurrentUser || null,
+        user: user || null,
         submitting,
         loadingInitial,
         error,
@@ -87,7 +86,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         logout
       }
     },
-    [getCurrentUser, submitting, error]
+    [user, submitting, error]
   )
   return <Authcontext.Provider value={memoedValue}>{children}</Authcontext.Provider>
 }
