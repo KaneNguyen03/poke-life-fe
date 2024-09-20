@@ -23,7 +23,7 @@ export default function ProtectedRoute({
 
   if (
     user === null ||
-    (allowedRoles && !allowedRoles.includes(user.role))
+    (allowedRoles && !allowedRoles.includes(user.Role))
   ) {
     return <div>Permission denied</div>
   }
