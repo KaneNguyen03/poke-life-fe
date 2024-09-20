@@ -5,7 +5,7 @@ import { FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa'
 import { toast } from 'react-toastify'
 
 export default function Login() {
-  const { login, user } = useAuth()
+  const { login } = useAuth()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
