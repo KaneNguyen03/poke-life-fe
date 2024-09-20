@@ -21,9 +21,7 @@ export default function Login() {
     return re.test(String(email).toLowerCase())
   }
 
-  if (user) {
-    window.location.href = "/"
-  }
+
 
   const handleEmailChange = (e: { target: { value: string } }) => {
     setEmail(e.target.value)
@@ -48,8 +46,11 @@ export default function Login() {
     if (!emailError && !passwordError) {
       setIsLoading(true)
       const result = await login({ email, password })
-      if (result)
+      if (result) {
         await toast.success('Login successful')
+        window.location.href = "/"
+      }
+
       setIsLoading(false)
     }
   }
