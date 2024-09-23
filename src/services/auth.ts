@@ -13,6 +13,20 @@ const signIn = async (email: string, password: string): Promise<Token> => {
     throw new Error('Invalid email or password')
   }
 }
+const signUp = async ({ email, password, address, phone, username }: {
+  email: string, password: string
+  address: string, phone: string, username: string
+}): Promise<Token> => {
+  try {
+    const { data } = await apiInstance.post<Token>(import.meta.env.VITE_SIGNUP_API,
+      { email, password, address, phoneNumber: phone, username }
+    )
+    return data
+  } catch (error) {
+    console.error(error)
+    throw new Error('Invalid signup data')
+  }
+}
 
 const logOut = async () => {
   try {
@@ -47,7 +61,8 @@ const authApi = {
   signIn,
   logOut,
   refreshToken,
-  getCurrentUser
+  getCurrentUser,
+  signUp
 }
 
 export default authApi

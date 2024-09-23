@@ -26,7 +26,7 @@ const AuthModal = ({ isOpen, onRequestClose }: AuthModalProps) => {
                     Sign In
                 </button>
                 <button
-                    onClick={() => alert('Redirect to create account page')}
+                    onClick={() => window.location.href = '/signup'}
                     className="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700"
                 >
                     Create Account

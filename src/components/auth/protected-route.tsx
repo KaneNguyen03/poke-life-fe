@@ -1,5 +1,6 @@
 import { useAuth } from '@/hooks/use-auth'
 import { PropsWithChildren } from 'react'
+import Unauthorized from '../ui/unauthorized'
 
 export type User = {
   id: number
@@ -25,7 +26,7 @@ export default function ProtectedRoute({
     user === null ||
     (allowedRoles && !allowedRoles.includes(user.Role))
   ) {
-    return <div>Permission denied</div>
+    return <Unauthorized />
   }
 
   return children

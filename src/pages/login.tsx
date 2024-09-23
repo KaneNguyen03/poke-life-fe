@@ -2,6 +2,7 @@ import Background from '@/assets/background.jpg'
 import { useAuth } from '@/hooks/use-auth'
 import React, { useEffect, useState } from 'react'
 import { FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 export default function Login() {
@@ -116,7 +117,7 @@ export default function Login() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                className="absolute inset-y-2 right-0 pr-3 flex items-center text-sm leading-5"
               >
                 {showPassword ? (
                   <FaEyeSlash className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -124,6 +125,7 @@ export default function Login() {
                   <FaEye className="h-5 w-5 text-gray-400" aria-hidden="true" />
                 )}
               </button>
+
             </div>
             {passwordError && (
               <p id="password-error" className="mt-1 text-sm text-red-600" aria-live="polite">
@@ -132,6 +134,12 @@ export default function Login() {
             )}
           </div>
           <div>
+            <div className="mx-2 block text-sm font-medium text-gray-700 mb-4 py-2">
+              If you don't have an account,{' '}
+              <Link to="/signup" className="underline text-sm text-blue-600 hover:underline">
+                create an account here
+              </Link>
+            </div>
             <button
               type="submit"
               className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-200 ${isLoading ? 'opacity-75 cursor-not-allowed' : ''}`}
