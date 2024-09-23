@@ -10,7 +10,7 @@ export const Authcontext = createContext<AuthContextType | undefined>(undefined)
 type AuthProviderProps = PropsWithChildren
 
 export default function AuthProvider({ children }: AuthProviderProps) {
-  const [getCurrentUser, setCurrentUser] = useState<AuthUser | null>()
+  const [user, setCurrentUser] = useState<AuthUser | null>()
   const [submitting, setSubmitting] = useState(false)
   const [signInSuccess, setSignInSuccess] = useState(false)
   const [loadingInitial, setLoadingInitial] = useState(true)
@@ -23,7 +23,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 
   const getUser = async () => {
     const data = await authApi.getCurrentUser()
-    setCurrentUser(data)
+    setCurrentUser(data as AuthUser | null | undefined)
     setSubmitting(false)
     setLoadingInitial(false)
   }
@@ -46,27 +46,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     }
   }
 
-  async function signInWithGoogle(): Promise<Token | undefined> {
-    try {
-      setSubmitting(true)
-      const response = await authApi.signInWithGoogle()
-      localStorage.setItem(TOKEN_KEY, response.access_token)
-      localStorage.setItem(REFRESH_TOKEN_KEY, response.refresh_token)
-      setSignInSuccess(true)
-      return response
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      setError(error)
-      setSubmitting(false)
-      toast.error(error.message, {
-        theme: 'dark'
-      })
-    }
-  }
-
   const logout = async () => {
     const resp = await authApi.logOut()
-    if (resp.msg === 'logout') {
+    if (resp) {
       localStorage.clear()
       window.location.reload()
     } else {
@@ -94,20 +76,20 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const memoedValue = useMemo(
     () => {
       return {
-        user: getCurrentUser || null,
+        user: user || null,
         submitting,
         loadingInitial,
         error,
-        login: ({ email, password }: { email: string, password: string }): Promise<Token | undefined> => {
-          return signIn({ email, password })
+        login: ({ email, password }: { email: string, password: string }): Promise<Token> => {
+          return signIn({ email, password }) as Promise<Token>
         },
-        loginWithGoogle: (): Promise<Token | undefined> => { // Modify the return type to Promise<Token | undefined>
-          return signInWithGoogle()
-        },
+        // loginWithGoogle: (): Promise<Token | undefined> => { // Modify the return type to Promise<Token | undefined>
+        //   return signInWithGoogle()
+        // },
         logout
       }
     },
-    [getCurrentUser, submitting, error]
+    [user, submitting, error]
   )
   return <Authcontext.Provider value={memoedValue}>{children}</Authcontext.Provider>
 }

@@ -18,16 +18,13 @@ export type GetCurrentUserAPIResponse = {
 }
 
 export type AuthUser = {
-    id: number
-    fullName: string
-    email: string
-    dob: string
-    address: string
-    gender: string
-    phone: string
-    username: string
-    role: string
-    profilePic: string
+    UserID: number
+    Email: string
+    Address: string
+    PhoneNumber: string
+    Username: string
+    Role: string
+    IsDeleted: boolean
 }
 
 export type AuthContextType = {
@@ -40,3 +37,13 @@ export type AuthContextType = {
     logout: () => Promise<void>
 }
 
+export type APIFoodResponse = {
+    FoodID: string,
+    Name: string,
+    Image: string,
+    Description: string,
+    Price: number,
+    Calories: number,
+    CreatedAt: string,
+    UpdatedAt: string
+}

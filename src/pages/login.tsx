@@ -1,10 +1,11 @@
+import Background from '@/assets/background.jpg'
 import { useAuth } from '@/hooks/use-auth'
-import { GoogleLogin } from '@react-oauth/google'
 import React, { useEffect, useState } from 'react'
 import { FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa'
+import { toast } from 'react-toastify'
 
 export default function Login() {
-  const { login, loginWithGoogle } = useAuth()
+  const { login, user } = useAuth()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -18,6 +19,10 @@ export default function Login() {
   const validateEmail = (email: string) => {
     const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
     return re.test(String(email).toLowerCase())
+  }
+
+  if (user) {
+    window.location.href = "/"
   }
 
   const handleEmailChange = (e: { target: { value: string } }) => {
@@ -38,22 +43,27 @@ export default function Login() {
     }
   }
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
     if (!emailError && !passwordError) {
       setIsLoading(true)
-      login({ email, password })
+      const result = await login({ email, password })
+      if (result) {
+        await toast.success('Login successful')
+        window.location.href = "/"
+      }
+
       setIsLoading(false)
     }
   }
 
-  const handleLoginGoogle = () => {
-    loginWithGoogle()
-  }
+  // const handleLoginGoogle = () => {
+  //   loginWithGoogle()
+  // }
 
-  const handleLoginFailure = (error) => {
-    console.error('Google Login Error:', error)
-  }
+  // const handleLoginFailure = (error) => {
+  //   console.error('Google Login Error:', error)
+  // }
 
   useEffect(() => {
     const emailInput = document.getElementById('email')
@@ -63,7 +73,10 @@ export default function Login() {
   }, [])
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 p-4">
+    <div
+      className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 p-4"
+      style={{ backgroundImage: `url(${Background})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+    >
       <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md transition-all duration-300 ease-in-out transform hover:scale-105">
         <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Login</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -144,12 +157,12 @@ export default function Login() {
             </button>
           </div>
         </form>
-        <div className='bg-blue-600 p-4 mt-4 rounded-xl shadow-lg w-full max-w-md transition-all duration-300 ease-in-out transform hover:scale-105 flex justify-center'>
+        {/* <div className='bg-blue-600 p-4 mt-4 rounded-xl shadow-lg w-full max-w-md transition-all duration-300 ease-in-out transform hover:scale-105 flex justify-center'>
           <GoogleLogin
             onSuccess={handleLoginGoogle}
             onFailure={handleLoginFailure}
           />
-        </div>
+        </div> */}
       </div>
     </div>
   )

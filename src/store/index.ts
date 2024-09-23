@@ -1,11 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit"
-
-// Placeholder reducer
-const placeholderReducer = (state = {}, action: any) => state
+import cartReducer from "./slice/cart-slice"
 
 export const store = configureStore({
     reducer: {
-        placeholder: placeholderReducer
+        cart: cartReducer,
     }
 })
 
