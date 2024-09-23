@@ -46,6 +46,27 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     }
   }
 
+  async function signUp({ email, password, address, phone, username }: {
+    email: string, password: string
+    address: string, phone: string, username: string
+  }): Promise<Token | undefined> {
+    try {
+      setSubmitting(true)
+      const response = await authApi.signUp({ email, password, address, phone, username })
+      localStorage.setItem(TOKEN_KEY, response.access_token)
+      localStorage.setItem(REFRESH_TOKEN_KEY, response.refresh_token)
+      setSignInSuccess(true)
+      return response
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      setError(error)
+      setSubmitting(false)
+      toast.error(error.message, {
+        theme: 'dark'
+      })
+    }
+  }
+
   const logout = async () => {
     const resp = await authApi.logOut()
     if (resp) {
@@ -83,10 +104,13 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         login: ({ email, password }: { email: string, password: string }): Promise<Token> => {
           return signIn({ email, password }) as Promise<Token>
         },
-        // loginWithGoogle: (): Promise<Token | undefined> => { // Modify the return type to Promise<Token | undefined>
-        //   return signInWithGoogle()
-        // },
-        logout
+        logout,
+        signup: ({ email, password, address, phone, username }: {
+          email: string, password: string
+          address: string, phone: string, username: string
+        }): Promise<Token> => {
+          return signUp({ email, password, address, phone, username }) as Promise<Token>
+        }
       }
     },
     [user, submitting, error]

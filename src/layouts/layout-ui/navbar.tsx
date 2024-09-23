@@ -74,7 +74,7 @@ export default function Navbar() {
                                 <div className='flex justify-center gap-4 items-center'>
                                     <button
                                         className='flex justify-center gap-2 items-center p-2 border border-green-600 rounded hover:bg-green-100 transition'
-                                        onClick={() => console.log("hello")}
+                                        onClick={() => window.location.href = "/profile"}
                                     >
                                         <FaUser className="text-green-600 hover:text-green-400 cursor-pointer" />
                                         <span className='hidden sm:inline'>Profile</span>
