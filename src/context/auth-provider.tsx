@@ -19,7 +19,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 
   useEffect(() => {
     if (error) setError(undefined)
-  }, [location.pathname])
+  }, [error, location.pathname])
 
   const getUser = async () => {
     const data = await authApi.getCurrentUser()
@@ -113,7 +113,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         }
       }
     },
-    [user, submitting, error]
+    [user, submitting, loadingInitial, error]
   )
   return <Authcontext.Provider value={memoedValue}>{children}</Authcontext.Provider>
 }

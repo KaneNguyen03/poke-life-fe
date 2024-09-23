@@ -49,7 +49,12 @@ const OrderSuccess = () => {
                         <div className="mt-4">
                             <h3 className="text-lg font-medium text-gray-800 mb-2">Items Purchased:</h3>
                             <ul className="list-disc list-inside">
-                                {orderDetails.items.map((item: { Name: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; quantity: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; Price: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined }, index: Key | null | undefined) => (
+                                {orderDetails.items.map((item: {
+                                    Name: string
+                                    quantity: string | number | boolean
+                                    Price: string | number | boolean | ReactPortal | null | undefined
+                                },
+                                    index: Key | null | undefined) => (
                                     <li key={index} className="text-gray-600">
                                         {item.Name} - Qty: {item.quantity} - ${item.Price}
                                     </li>
