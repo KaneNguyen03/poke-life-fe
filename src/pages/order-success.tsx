@@ -1,7 +1,7 @@
-import { useLocation } from 'react-router-dom'
+import { Key, ReactPortal } from 'react'
 import { FaCheckCircle } from "react-icons/fa"
 import { IoMdArrowBack } from "react-icons/io"
-import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, Key } from 'react'
+import { useLocation } from 'react-router-dom'
 
 const OrderSuccess = () => {
     const location = useLocation()

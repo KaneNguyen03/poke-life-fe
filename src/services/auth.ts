@@ -28,18 +28,18 @@ const signUp = async ({ email, password, address, phone, username }: {
   }
 }
 
-const signInWithGoogle = async (): Promise<Token> => {
-  try {
-    // const { data } = await apiInstance.get<Token>(import.meta.env.VITE_GOOGLE_SIGNIN_API)
-    // console.log("🚀 Kha ne ~ data:", data)
-    // return data
-    window.location.href = `${import.meta.env.VITE_API_SECRET}/${import.meta.env.VITE_GOOGLE_SIGNIN_API}`
+// const signInWithGoogle = async (): Promise<Token> => {
+//   try {
+//     // const { data } = await apiInstance.get<Token>(import.meta.env.VITE_GOOGLE_SIGNIN_API)
+//     // console.log("🚀 Kha ne ~ data:", data)
+//     // return data
+//     window.location.href = `${import.meta.env.VITE_API_SECRET}/${import.meta.env.VITE_GOOGLE_SIGNIN_API}`
 
-  } catch (error) {
-    console.error(error)
-    throw new Error('Invalid login by mail!')
-  }
-}
+//   } catch (error) {
+//     console.error(error)
+//     throw new Error('Invalid login by mail!')
+//   }
+// }
 
 const logOut = async () => {
   try {

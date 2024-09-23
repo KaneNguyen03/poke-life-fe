@@ -1,6 +1,5 @@
-import { OrdersHistory } from "@/components/ui/order-history"
 import { useAuth } from "@/hooks/use-auth"
-import { useState, ChangeEvent, FormEvent } from "react"
+import { ChangeEvent, FormEvent, useState } from "react"
 import { FaEdit, FaSave } from "react-icons/fa"
 
 export const Profile = () => {
@@ -8,11 +7,11 @@ export const Profile = () => {
     const [isEditing, setIsEditing] = useState(false)
     const [editedUser, setEditedUser] = useState({ ...user })
 
-    const [orders, setOrders] = useState([
-        { id: 1, date: "2023-06-01", status: "Delivered", total: 45.99 },
-        { id: 2, date: "2023-06-05", status: "Processing", total: 32.50 },
-        { id: 3, date: "2023-06-10", status: "Delivered", total: 58.75 }
-    ])
+    // const [orders, setOrders] = useState([
+    //     { id: 1, date: "2023-06-01", status: "Delivered", total: 45.99 },
+    //     { id: 2, date: "2023-06-05", status: "Processing", total: 32.50 },
+    //     { id: 3, date: "2023-06-10", status: "Delivered", total: 58.75 }
+    // ])
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
@@ -84,7 +83,7 @@ export const Profile = () => {
                 </div>
             </div>
             <div className="container mx-auto px-4 py-8 lg:w-1/2">
-                <OrdersHistory orders={orders} />
+                {/* <OrdersHistory orders={orders} /> */}
             </div>
         </div>
     )
