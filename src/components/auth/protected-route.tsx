@@ -17,6 +17,7 @@ export default function ProtectedRoute({
   children,
 }: ProtectedRouteProps) {
   const { user } = useAuth()
+  console.log("🚀 Kha ne ~ user:", user)
 
   if (user === undefined) {
     return <div>Loading...</div>
