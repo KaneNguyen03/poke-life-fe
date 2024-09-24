@@ -1,3 +1,4 @@
+import OrderHistoryDetail from "@/components/order-history-detail/order-history-detail"
 import NotFound from "@/components/ui/not-found"
 import AdminLayout from "@/layouts/admin-layout"
 import DefaultLayout from "@/layouts/default-layout"
@@ -15,6 +16,7 @@ export const ROUTE_PATHS = {
     LOGIN: '/login',
     SIGNUP: '/signup',
     PROFILE: '/profile',
+    ORDER_HISTORY_DETAIL: '/order-history',
     ADMIN: '/admin',
     CHECKOUT: '/check-out',
     ORDER_SUCCESS: '/order-success',
@@ -51,10 +53,19 @@ export const routes: RouteType[] = [
         allowedRoles: ['Customer'],
     },
     {
+        path: `${ROUTE_PATHS.ORDER_HISTORY_DETAIL}/:id`,
+        name: 'HistoryDetail',
+        component: OrderHistoryDetail,
+        layout: DefaultLayout,
+        protected: true,
+        allowedRoles: ['Customer'],
+    },
+    {
         path: ROUTE_PATHS.ROOT,
         name: 'HomePage',
         component: HomePage,
-        layout: DefaultLayout
+        layout: DefaultLayout,
+
     },
     {
         path: ROUTE_PATHS.CHECKOUT,

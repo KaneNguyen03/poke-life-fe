@@ -49,10 +49,13 @@ export default function Login() {
     if (!emailError && !passwordError) {
       setIsLoading(true)
       const result = await login({ email, password })
-      if (result) {
-        await toast.success('Login successful')
-        window.location.href = "/"
-      }
+
+      if (!result)
+        return setIsLoading(false)
+
+      await toast.success('Login successful')
+      window.location.href = "/"
+
 
       setIsLoading(false)
     }

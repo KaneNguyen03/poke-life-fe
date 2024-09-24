@@ -1,5 +1,6 @@
 import { useAuth } from '@/hooks/use-auth'
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Unauthorized from '../ui/unauthorized'
 
 export type User = {
@@ -17,18 +18,21 @@ export default function ProtectedRoute({
   children,
 }: ProtectedRouteProps) {
   const { user } = useAuth()
-  console.log("🚀 Kha ne ~ user:", user)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (user?.Role === 'Admin') {
+      navigate('/admin', { replace: true })
+    }
+  }, [user, navigate])
 
   if (user === undefined) {
     return <div>Loading...</div>
   }
 
-  if (
-    user === null ||
-    (allowedRoles && !allowedRoles.includes(user.Role))
-  ) {
+  if (user === null || (allowedRoles && !allowedRoles.includes(user.Role))) {
     return <Unauthorized />
   }
 
-  return children
+  return <>{children}</>
 }

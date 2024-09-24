@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 import { routes } from "."
 import ProtectedRoute from "@/components/auth/protected-route"
+import PublicRoute from "@/components/auth/public-route"
 
 export default function Router() {
     return (
@@ -14,7 +15,9 @@ export default function Router() {
                         <Page />
                     </ProtectedRoute>
                 ) : (
-                    <Page />
+                    <PublicRoute>
+                        <Page />
+                    </PublicRoute>
                 )
 
                 return (
