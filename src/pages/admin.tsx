@@ -1,19 +1,85 @@
-import { dummyChartData, navItems } from "@/constants"
+import { navItems } from "@/constants"
 import { FoodManagement } from "@/layouts/layout-admin-ui/food-management"
 import { MetricCard } from "@/layouts/layout-admin-ui/metric-card"
 import { OrderManagement } from "@/layouts/layout-admin-ui/order-management"
 import { UserManagement } from "@/layouts/layout-admin-ui/user-management"
+import transactionApi from "@/services/transaction"
 import { Button } from "antd"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { FiCoffee, FiMenu, FiPieChart, FiShoppingCart, FiUsers, FiX } from "react-icons/fi"
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
+
+interface Food {
+  FoodID: string
+  Name: string
+  Description: string
+  Price: string
+  Calories: number
+  Image: string
+  CreatedAt: string
+  UpdatedAt: string
+  IsDeleted: boolean
+}
+
+interface Statistic {
+  totalCustomers: number
+  pendingOrders: number
+  finishedOrders: number
+  totalRevenue: number
+  mostPopularFood: Food | null
+  viewLineChartByMonth: DailyData[]
+  viewLineChart: DailyData[] // Add this field for daily data
+}
+
+interface DailyData {
+  day: number
+  users: number
+  orders: number
+  revenue: number // Revenue for the day
+}
 
 const Admin = () => {
   const [activeTab, setActiveTab] = useState("Dashboard")
   const [isSidebarOpen, setIsSidebarOpen] = useState(true)
+  const [statistic, setStatistic] = useState<Statistic | null>(null)
+  const [isMonthlyView, setIsMonthlyView] = useState(true) // State for toggling between monthly and daily view
+
+  const fetchStatistic = async () => {
+    try {
+      const response = await transactionApi.getStatistics()
+      if (response) {
+        setStatistic(response.data)
+      }
+    } catch (error) {
+      console.error("Failed to fetch statistic", error)
+    }
+  }
+
+  useEffect(() => {
+    fetchStatistic()
+  }, [])
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen)
+  }
+
+  const renderChart = () => {
+    const chartData = isMonthlyView ? statistic?.viewLineChartByMonth ?? [] : statistic?.viewLineChart ?? []
+
+    return (
+      <ResponsiveContainer width="100%" height={300}>
+        <LineChart data={chartData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey={isMonthlyView ? "day" : "name"} tick={{ fontSize: 12 }} />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="users" stroke="#8884d8" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="orders" stroke="#82ca9d" />
+          <Line type="monotone" dataKey="revenue" stroke="#ffc658" />
+        </LineChart>
+      </ResponsiveContainer>
+    )
   }
 
   const renderContent = () => {
@@ -23,24 +89,22 @@ const Admin = () => {
           <div className="p-6">
             <h2 className="text-2xl font-semibold mb-4">Dashboard Overview</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-              <MetricCard title="Total Users" value="1,234" icon={<FiUsers />} />
-              <MetricCard title="Pending Orders" value="56" icon={<FiShoppingCart />} />
-              <MetricCard title="Popular Items" value="15" icon={<FiCoffee />} />
-              <MetricCard title="Revenue" value="$12,345" icon={<FiPieChart />} />
+              <MetricCard title="Total Users" value={statistic?.totalCustomers?.toString() ?? ''} icon={<FiUsers />} />
+              <MetricCard title="Pending Orders" value={statistic?.pendingOrders?.toString() ?? ''} icon={<FiShoppingCart />} />
+              <MetricCard title="Finished Order" value={statistic?.finishedOrders?.toString() ?? ''} icon={<FiCoffee />} />
+              <MetricCard title="Revenue" value={statistic?.totalRevenue?.toString() ?? ''} icon={<FiPieChart />} />
+            </div>
+            <div className="flex space-x-4 mb-4">
+              <Button onClick={() => setIsMonthlyView(true)} type={isMonthlyView ? "primary" : "default"}>
+                Monthly View
+              </Button>
+              <Button onClick={() => setIsMonthlyView(false)} type={!isMonthlyView ? "primary" : "default"}>
+                Daily View
+              </Button>
             </div>
             <div className="bg-white p-4 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-4">User and Order Trends</h3>
-              <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={dummyChartData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Line type="monotone" dataKey="users" stroke="#8884d8" activeDot={{ r: 8 }} />
-                  <Line type="monotone" dataKey="orders" stroke="#82ca9d" />
-                </LineChart>
-              </ResponsiveContainer>
+              <h3 className="text-xl font-semibold mb-4">User, Order, and Revenue Trends</h3>
+              {renderChart()}
             </div>
           </div>
         )
@@ -108,7 +172,5 @@ const Admin = () => {
     </div>
   )
 }
-
-
 
 export default Admin

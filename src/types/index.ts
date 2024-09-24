@@ -64,3 +64,35 @@ export type OrderDetailRequest = {
     foodID: string,
     quantity: number
 }
+
+
+export interface Order {
+    [x: string]: any
+    data: any
+    status: number
+    OrderID: string
+    CustomerID: string
+    CustomerName: string
+    PhoneNumber: string
+    Address: string
+    TotalPrice: string
+    OrderStatus: string
+    CreatedAt: string
+    UpdatedAt: string
+    IsDeleted: boolean
+    paymentMethod: string
+}
+
+export interface Pagination {
+    pageIndex: number
+    pageSize: number
+    totalPages: number
+}
+
+export type APIUpdateOrderRequest = {
+    orderStatus: string,
+    customerName: string,
+    phoneNumber: string,
+    address: string,
+    paymentMethod: string
+}

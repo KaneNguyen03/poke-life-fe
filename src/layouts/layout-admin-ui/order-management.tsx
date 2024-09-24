@@ -1,34 +1,157 @@
-export const OrderManagement = () => (
-    <div className="p-6">
-        <h2 className="text-2xl font-semibold mb-4">Order Management</h2>
-        <div className="bg-white shadow-md rounded-lg overflow-hidden">
-            <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                    <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                    </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                    {/* Sample order data */}
-                    <tr>
-                        <td className="px-6 py-4 whitespace-nowrap">#12345</td>
-                        <td className="px-6 py-4 whitespace-nowrap">Jane Smith</td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Pending</span>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">$99.99</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                            <a href="#" className="text-indigo-600 hover:text-indigo-900 mr-2">View</a>
-                            <a href="#" className="text-green-600 hover:text-green-900">Process</a>
-                        </td>
-                    </tr>
-                    {/* Add more order rows as needed */}
-                </tbody>
-            </table>
+import PageIndexSelector from '@/components/pagination/page-index-selector'
+import PageSizeSelector from '@/components/pagination/page-size-selector'
+import StatusModal from '@/components/ui/status-modal'
+import { AppDispatch, RootState } from '@/store'
+import { fetchAllOrders, updateOrder } from '@/store/thunk/order-thunk'
+import { Order } from '@/types'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+
+export const OrderManagement = () => {
+    const navigate = useNavigate()
+    const dispatch: AppDispatch = useDispatch()
+
+    const { orders, loading, error, message } = useSelector((state: RootState) => state.order)
+    const { pagination } = useSelector((state: RootState) => state.order)
+
+    useEffect(() => {
+        if (error) {
+            toast.error(error)
+        }
+        if (message) {
+            toast.success(message)
+        }
+    }, [error, message])
+    const [pageIndex, setPageIndex] = useState(1)
+    const [pageSize, setPageSize] = useState(5)
+    const [keyword, setKeyword] = useState('')
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [selectedOrder, setSelectedOrder] = useState<Order | null>(null)
+    const [newStatus, setNewStatus] = useState('')
+
+    const fetchOrders = () => {
+        dispatch(fetchAllOrders({ pageIndex, pageSize, keyword }) as any)
+    }
+
+    useEffect(() => {
+        fetchOrders()
+    }, [dispatch, pageIndex, pageSize, keyword])
+
+    const handlePageChange = (page: number) => {
+        setPageIndex(page)
+    }
+
+    const handlePageSizeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setPageSize(Number(event.target.value))
+        setPageIndex(1)
+    }
+
+    const handleKeywordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setKeyword(event.target.value)
+        setPageIndex(1)
+    }
+
+    const openModal = (order: Order) => {
+        setSelectedOrder(order)
+        setIsModalOpen(true)
+    }
+
+    const handleStatusChange = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        if (selectedOrder) {
+            const request = {
+                orderStatus: newStatus,
+                customerName: selectedOrder.CustomerName,
+                phoneNumber: selectedOrder.PhoneNumber,
+                address: selectedOrder.Address,
+                paymentMethod: selectedOrder.paymentMethod,
+            }
+            // Use the typed dispatch function
+            dispatch(updateOrder({ id: selectedOrder.OrderID, updatedData: request }))
+
+            setIsModalOpen(false)
+            fetchOrders() // Refresh the order list
+
+        }
+    }
+
+    return (
+        <div className="p-6">
+            <h2 className="text-2xl font-semibold mb-4">Order Management</h2>
+            <PageSizeSelector
+                pageSize={pageSize}
+                onPageSizeChange={handlePageSizeChange}
+                keyword={keyword}
+                onKeywordChange={handleKeywordChange}
+            />
+            <div className="bg-white shadow-md rounded-lg overflow-hidden">
+                <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-50">
+                        <tr>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                        {loading ? (
+                            <tr>
+                                <td colSpan={5} className="text-center py-4">Loading...</td>
+                            </tr>
+                        ) : (
+                            Array.isArray(orders) && orders.map((order) => (
+                                <tr key={order.OrderID}>
+                                    <td className="px-6 py-4 whitespace-nowrap">{order.OrderID}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap">{order.CustomerName}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${order.OrderStatus === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
+                                            order.OrderStatus === 'Finished' ? 'bg-green-100 text-green-800' :
+                                                'bg-red-100 text-red-800'
+                                            }`}>
+                                            {order.OrderStatus}
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap">${order.TotalPrice}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <button
+                                            className="text-indigo-600 hover:text-indigo-900 mr-2"
+                                            onClick={() => navigate(`/admin/order/${order.OrderID}`)}
+                                        >
+                                            View
+                                        </button>
+                                        <button
+                                            className={`text-green-600 hover:text-green-900 ${order.OrderStatus === 'Finished' || order.OrderStatus === 'Cancelled' ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                            onClick={() => openModal(order)}
+                                            disabled={order.OrderStatus === 'Finished' || order.OrderStatus === 'Cancelled'}
+                                        >
+                                            Process
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))
+                        )}
+                    </tbody>
+                </table>
+                <PageIndexSelector
+                    pageIndex={pageIndex}
+                    totalPages={pagination?.totalPages} // Safely access totalPages
+                    onPageChange={handlePageChange}
+                />
+            </div>
+            {isModalOpen && (
+                <StatusModal
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                    order={selectedOrder}
+                    newStatus={newStatus}
+                    setNewStatus={setNewStatus}
+                    onStatusChange={handleStatusChange}
+                />
+            )}
         </div>
-    </div>
-)
+    )
+}
