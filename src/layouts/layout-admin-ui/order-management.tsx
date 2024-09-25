@@ -67,6 +67,7 @@ export const OrderManagement = () => {
                 phoneNumber: selectedOrder.PhoneNumber,
                 address: selectedOrder.Address,
                 paymentMethod: selectedOrder.paymentMethod,
+                total: selectedOrder.TotalPrice
             }
             // Use the typed dispatch function
             dispatch(updateOrder({ id: selectedOrder.OrderID, updatedData: request }))
@@ -92,6 +93,7 @@ export const OrderManagement = () => {
                         <tr>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Address</th>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
@@ -107,6 +109,7 @@ export const OrderManagement = () => {
                                 <tr key={order.OrderID}>
                                     <td className="px-6 py-4 whitespace-nowrap">{order.OrderID}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">{order.CustomerName}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap">{order.Address}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${order.OrderStatus === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
                                             order.OrderStatus === 'Finished' ? 'bg-green-100 text-green-800' :

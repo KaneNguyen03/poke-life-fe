@@ -1,12 +1,12 @@
 // src/features/orders/ordersSlice.ts
 import { Order } from '@/types' // Adjust the types as needed
-import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { createOrder, fetchAllOrders, updateOrder } from '../thunk/order-thunk'
 
 interface OrderState {
     orders: Order[] // Ensure it's an array
     loading: boolean
-    pagination: { totalPages: number }
+    pagination: { totalPages: number, pageIndex: number, pageSize: number }
     error: string | null
     message: string | null
 }
@@ -14,7 +14,7 @@ interface OrderState {
 const initialState: OrderState = {
     orders: [], // Initialize as an empty array
     loading: false,
-    pagination: { totalPages: 1 },
+    pagination: { totalPages: 1, pageIndex: 1, pageSize: 5 }, // Set default values
     error: null,
     message: null,
 }
@@ -34,7 +34,8 @@ const ordersSlice = createSlice({
             })
             .addCase(fetchAllOrders.fulfilled, (state, action) => {
                 state.loading = false
-                state.orders = action.payload // Set fetched orders to state
+                state.orders = action.payload.orders
+                state.pagination = action.payload.pagination ?? { totalPages: 0, pageIndex: 0, pageSize: 0 } // Set pagination data to state with default values
             })
             .addCase(fetchAllOrders.rejected, (state, action) => {
                 state.loading = false
@@ -43,17 +44,16 @@ const ordersSlice = createSlice({
             .addCase(createOrder.fulfilled, (state, action) => {
                 state.orders.push(action.payload) // Add the new order to the orders array
             })
-            .addCase(updateOrder.fulfilled, (state, action) => {
-                // Check if action.payload is defined
+            .addCase(updateOrder.fulfilled, (state, action: PayloadAction<Order>) => {
+
                 if (action.payload) {
-                    if (action.payload.status === 400) {
-                        state.error = action.payload.response.data.message[0] // Assign the error message to state.error
-                        return
-                    }
                     state.message = "Order updated successfully!"
                     const index = state.orders.findIndex(order => order.OrderID === action.payload.OrderID)
+
                     if (index !== -1) {
-                        state.orders[index] = action.payload // Update the order in the state
+                        state.orders[index] = { ...state.orders[index], ...action.payload } // Merge the updated fields
+                    } else {
+                        console.warn(`Order with ID ${action.payload.OrderID} not found in state.orders`)
                     }
                 }
             })

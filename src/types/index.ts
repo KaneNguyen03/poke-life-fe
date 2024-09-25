@@ -65,6 +65,11 @@ export type OrderDetailRequest = {
     quantity: number
 }
 
+export interface OrdersState {
+    loading: boolean
+    orders: Order[]
+    pagination: Pagination | null
+}
 
 export interface Order {
     [x: string]: any
@@ -95,4 +100,5 @@ export type APIUpdateOrderRequest = {
     phoneNumber: string,
     address: string,
     paymentMethod: string
+    total?: string
 }

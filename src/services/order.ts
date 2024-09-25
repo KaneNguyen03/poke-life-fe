@@ -45,7 +45,7 @@ const createOrder = async (data: APICreateOrderRequest) => {
 const updateOrder = async (id: string, updatedData: APIUpdateOrderRequest) => {
     try {
         const response = await apiInstance.patch(`${import.meta.env.VITE_ORDERS_API}/${id}`, updatedData)
-        const data = response.data
+        const data = response
         return data
 
     } catch (error) {
