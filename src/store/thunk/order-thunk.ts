@@ -26,7 +26,7 @@ export const updateOrder = createAsyncThunk<Order, { id: string; updatedData: AP
     'orders/updateOrder',
     async ({ id, updatedData }, { rejectWithValue }) => {
         try {
-            const { total, ...dataToUpdate } = updatedData
+            const { total, phone, ...dataToUpdate } = updatedData
 
             await orderApi.updateOrder(id, dataToUpdate)
 
@@ -38,7 +38,7 @@ export const updateOrder = createAsyncThunk<Order, { id: string; updatedData: AP
                 status: 0,
                 CustomerID: "",
                 CustomerName: updatedData.customerName,
-                PhoneNumber: updatedData.phoneNumber,
+                PhoneNumber: updatedData.phone ?? "",
                 Address: updatedData.address,
                 OrderStatus: updatedData.orderStatus,
                 CreatedAt: "",

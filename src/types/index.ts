@@ -101,4 +101,5 @@ export type APIUpdateOrderRequest = {
     address: string,
     paymentMethod: string
     total?: string
+    phone?: string
 }
