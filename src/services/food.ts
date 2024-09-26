@@ -1,7 +1,7 @@
 import apiInstance from "@/libs/axios"
 import { APICustomFoodRequest, APIFoodResponse } from "@/types"
 
-const getAllFood = async (pageIndex = 1, pageSize = 10, keyword = '') => {
+const getAllFood = async (pageIndex = 1, pageSize = 99, keyword = '') => {
     try {
         const response = await apiInstance.get<APIFoodResponse[]>(import.meta.env.VITE_FOOD_API, {
             params: {
