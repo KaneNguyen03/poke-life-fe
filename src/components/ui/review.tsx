@@ -1,9 +1,9 @@
 // components/ui/Reviews.tsx
-import React, { useState } from "react"
-import Slider from "react-slick"
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
 import { reviews } from "@/constants"
+import { useState } from "react"
+import Slider from "react-slick"
+import "slick-carousel/slick/slick-theme.css"
+import "slick-carousel/slick/slick.css"
 
 const Reviews = () => {
   const [showAll, setShowAll] = useState(false)
