@@ -2,6 +2,7 @@ import { useAuth } from '@/hooks/use-auth'
 import { PropsWithChildren, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Unauthorized from '../ui/unauthorized'
+import Loading from '../ui/loading'
 
 export type User = {
   id: number
@@ -26,11 +27,11 @@ export default function ProtectedRoute({
     }
   }, [user, navigate])
 
-  if (user === undefined) {
-    return <div>Loading...</div>
+  if (user === null) {
+    return <Loading />
   }
 
-  if (user === null || (allowedRoles && !allowedRoles.includes(user.Role))) {
+  if (allowedRoles && !allowedRoles.includes(user.Role)) {
     return <Unauthorized />
   }
 

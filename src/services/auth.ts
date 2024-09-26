@@ -44,18 +44,20 @@ const signUp = async ({ email, password, address, phone, username }: {
 const logOut = async () => {
   try {
     const resp = await apiInstance.post(import.meta.env.VITE_LOGOUT_API)
+    window.location.href = '/'
     return resp.data
   } catch {
     return { error: true }
   }
 }
 
-const refreshToken = async (refreshToken: string) => {
+const refreshToken = async (userId: string, refreshToken: string) => {
   try {
     const resp = await apiInstance.post(import.meta.env.VITE_REFRESH_API, {
+      userId: userId,
       refreshToken: refreshToken
     })
-    return resp.data
+    return resp
   } catch (e) {
     return e
   }

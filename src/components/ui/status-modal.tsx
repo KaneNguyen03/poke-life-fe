@@ -8,7 +8,7 @@ interface StatusModalProps {
     order: Order | null
     newStatus: string
     setNewStatus: (status: string) => void
-    onStatusChange: () => void
+    onStatusChange: (e: React.FormEvent<HTMLFormElement>) => void
 }
 
 const StatusModal: React.FC<StatusModalProps> = ({

@@ -1,4 +1,5 @@
 import { navItems } from "@/constants"
+import { useAuth } from "@/hooks/use-auth"
 import { FoodManagement } from "@/layouts/layout-admin-ui/food-management"
 import { MetricCard } from "@/layouts/layout-admin-ui/metric-card"
 import { OrderManagement } from "@/layouts/layout-admin-ui/order-management"
@@ -7,6 +8,7 @@ import transactionApi from "@/services/transaction"
 import { Button } from "antd"
 import { useEffect, useState } from "react"
 import { FiCoffee, FiMenu, FiPieChart, FiShoppingCart, FiUsers, FiX } from "react-icons/fi"
+import { toast } from "react-toastify"
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
 
 interface Food {
@@ -39,6 +41,8 @@ interface DailyData {
 }
 
 const Admin = () => {
+  const { user, logout } = useAuth()
+
   const [activeTab, setActiveTab] = useState("Dashboard")
   const [isSidebarOpen, setIsSidebarOpen] = useState(true)
   const [statistic, setStatistic] = useState<Statistic | null>(null)
@@ -157,12 +161,21 @@ const Admin = () => {
           </Button>
           <h1 className="text-2xl font-semibold">Admin Dashboard</h1>
           <div className="flex items-center space-x-4">
-            <span>Admin User</span>
+            <span>{user?.Username}</span>
             <img
               className="h-8 w-8 rounded-full"
               src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
               alt="Admin"
             />
+            <button
+              className='flex justify-center gap-2 items-center p-2 border border-red-600 rounded hover:bg-red-100 transition'
+              onClick={() => {
+                logout()
+                toast.success('Logged out successfully!')
+              }}
+            >
+              <p className='underline-offset-2 text-red-600'>Logout</p>
+            </button>
           </div>
         </header>
         <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">

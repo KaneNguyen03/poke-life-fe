@@ -1,5 +1,6 @@
 import authApi from '@/services/auth'
 import axios from 'axios'
+import { jwtDecode } from 'jwt-decode'
 
 export const TOKEN_KEY = 'poke_token'
 export const REFRESH_TOKEN_KEY = 'poke_refresh_token'
@@ -30,15 +31,19 @@ apiInstance.interceptors.response.use(
       originalRequest._retry = true
       try {
         const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY)
+        const accessToken = localStorage.getItem(TOKEN_KEY) || ''
+        const token = jwtDecode(accessToken) as { sub: string }
         if (refreshToken) {
-          const response = await authApi.refreshToken(refreshToken)
-          const newToken = response.data.token
+          const response = await authApi.refreshToken(token.sub, refreshToken) as { data: { access_token: string, refresh_token: string } }
 
-          // Save the new token
-          localStorage.setItem(TOKEN_KEY, newToken)
+          const newAccessToken = response.data.access_token
+          const newRefreshToken = response.data.refresh_token
+          // // Save the new token
+          localStorage.setItem(TOKEN_KEY, newAccessToken)
+          localStorage.setItem(REFRESH_TOKEN_KEY, newRefreshToken)
 
           // Update the authorization header and retry the original request
-          originalRequest.headers['Authorization'] = `Bearer ${newToken}`
+          originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`
           return apiInstance(originalRequest)
         } else {
           throw new Error('Refresh token not found')

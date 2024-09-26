@@ -32,7 +32,7 @@ export const OrderManagement = () => {
     const [newStatus, setNewStatus] = useState('')
 
     const fetchOrders = () => {
-        dispatch(fetchAllOrders({ pageIndex, pageSize, keyword }) as any)
+        dispatch(fetchAllOrders({ pageIndex, pageSize, keyword }))
     }
 
     useEffect(() => {
@@ -148,6 +148,8 @@ export const OrderManagement = () => {
                     onPageChange={handlePageChange}
                 />
             </div>
+
+
             {isModalOpen && (
                 <StatusModal
                     isOpen={isModalOpen}
