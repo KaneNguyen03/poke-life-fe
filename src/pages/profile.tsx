@@ -39,7 +39,7 @@ export const Profile = () => {
     }
 
     return (
-        <div className="flex flex-col lg:flex-row w-full px-40">
+        <div className="flex flex-col lg:flex-row w-full px-40 bg-green-50">
             {loading ? <Loading /> :
                 (<> <div className="container mx-auto px-4 py-8 lg:w-1/2">
                     <h2 className="text-3xl font-bold text-center mb-8">My Profile</h2>

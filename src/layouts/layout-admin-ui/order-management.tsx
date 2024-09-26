@@ -1,16 +1,15 @@
 import PageIndexSelector from '@/components/pagination/page-index-selector'
 import PageSizeSelector from '@/components/pagination/page-size-selector'
+import OrderDetailsModal from '@/components/ui/order-details-modal'
 import StatusModal from '@/components/ui/status-modal'
 import { AppDispatch, RootState } from '@/store'
 import { fetchAllOrders, updateOrder } from '@/store/thunk/order-thunk'
 import { Order } from '@/types'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 export const OrderManagement = () => {
-    const navigate = useNavigate()
     const dispatch: AppDispatch = useDispatch()
 
     const { orders, loading, error, message } = useSelector((state: RootState) => state.order)
@@ -24,10 +23,12 @@ export const OrderManagement = () => {
             toast.success(message)
         }
     }, [error, message])
+
     const [pageIndex, setPageIndex] = useState(1)
     const [pageSize, setPageSize] = useState(5)
     const [keyword, setKeyword] = useState('')
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false) // New state for details modal
     const [selectedOrder, setSelectedOrder] = useState<Order | null>(null)
     const [newStatus, setNewStatus] = useState('')
 
@@ -58,6 +59,11 @@ export const OrderManagement = () => {
         setIsModalOpen(true)
     }
 
+    const openDetailsModal = (order: Order) => {
+        setSelectedOrder(order)
+        setIsDetailsModalOpen(true) // Open the details modal
+    }
+
     const handleStatusChange = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (selectedOrder) {
@@ -70,12 +76,9 @@ export const OrderManagement = () => {
                 total: selectedOrder.TotalPrice,
                 phone: selectedOrder.PhoneNumber,
             }
-            // Use the typed dispatch function
             dispatch(updateOrder({ id: selectedOrder.OrderID, updatedData: request }))
-
             setIsModalOpen(false)
-            fetchOrders() // Refresh the order list
-
+            fetchOrders()
         }
     }
 
@@ -125,7 +128,7 @@ export const OrderManagement = () => {
                                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <button
                                             className="text-indigo-600 hover:text-indigo-900 mr-2"
-                                            onClick={() => navigate(`/admin/order/${order.OrderID}`)}
+                                            onClick={() => openDetailsModal(order)} // Open details modal
                                         >
                                             View
                                         </button>
@@ -149,7 +152,6 @@ export const OrderManagement = () => {
                 />
             </div>
 
-
             {isModalOpen && (
                 <StatusModal
                     isOpen={isModalOpen}
@@ -158,6 +160,14 @@ export const OrderManagement = () => {
                     newStatus={newStatus}
                     setNewStatus={setNewStatus}
                     onStatusChange={handleStatusChange}
+                />
+            )}
+
+            {isDetailsModalOpen && (
+                <OrderDetailsModal
+                    isOpen={isDetailsModalOpen}
+                    onClose={() => setIsDetailsModalOpen(false)}
+                    orderID={selectedOrder?.OrderID || ""} // Pass selected order ID
                 />
             )}
         </div>

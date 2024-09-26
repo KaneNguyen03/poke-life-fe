@@ -65,6 +65,7 @@ const ordersSlice = createSlice({
 })
 
 // Export actions and reducer
+// eslint-disable-next-line no-empty-pattern
 export const { } = ordersSlice.actions
 
 export default ordersSlice.reducer

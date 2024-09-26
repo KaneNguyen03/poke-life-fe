@@ -69,7 +69,7 @@ export default function OrderHistoryDetail() {
     }
 
     return (
-        <div className="container mx-auto px-4 py-6">
+        <div className="container mx-auto px-4 py-6 bg-green-50">
             <h2 className="text-2xl font-bold mb-6">Order Details</h2>
             <button
                 onClick={handleGoBack}

@@ -1,8 +1,8 @@
-import { FiCoffee, FiPieChart, FiShoppingCart, FiUsers } from "react-icons/fi"
+import { FiCoffee, FiPieChart, FiShoppingCart } from "react-icons/fi"
 
 export const navItems = [
     { name: "Dashboard", icon: <FiPieChart /> },
-    { name: "User", icon: <FiUsers /> },
+    // { name: "User", icon: <FiUsers /> },
     { name: "Order", icon: <FiShoppingCart /> },
     { name: "Food", icon: <FiCoffee /> },
 ]

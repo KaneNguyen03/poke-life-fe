@@ -6,7 +6,7 @@ export const NotFound = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-green-50 flex items-center justify-center px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8 text-center">
                 <div>
                     <h1 className="text-9xl font-extrabold text-blue-600 mb-4">404</h1>

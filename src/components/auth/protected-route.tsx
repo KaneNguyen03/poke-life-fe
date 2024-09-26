@@ -1,8 +1,7 @@
 import { useAuth } from '@/hooks/use-auth'
-import { PropsWithChildren, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Unauthorized from '../ui/unauthorized'
+import { PropsWithChildren } from 'react'
 import Loading from '../ui/loading'
+import Unauthorized from '../ui/unauthorized'
 
 export type User = {
   id: number
@@ -19,13 +18,6 @@ export default function ProtectedRoute({
   children,
 }: ProtectedRouteProps) {
   const { user } = useAuth()
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    if (user?.Role === 'Admin') {
-      navigate('/admin', { replace: true })
-    }
-  }, [user, navigate])
 
   if (user === null) {
     return <Loading />

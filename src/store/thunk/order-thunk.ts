@@ -26,6 +26,7 @@ export const updateOrder = createAsyncThunk<Order, { id: string; updatedData: AP
     'orders/updateOrder',
     async ({ id, updatedData }, { rejectWithValue }) => {
         try {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const { total, phone, ...dataToUpdate } = updatedData
 
             await orderApi.updateOrder(id, dataToUpdate)

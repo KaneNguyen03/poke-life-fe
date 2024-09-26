@@ -5,10 +5,10 @@ import Footer from "./layout-ui/footer"
 
 export default function DefaultLayout({ children }: { children: React.ReactNode }) {
     return (
-        <Layout className="min-h-screen">
+        <Layout className="min-h-screen ">
             <Navbar />
             <Layout>
-                <Content className="flex flex-col">{children}</Content>
+                <Content className="flex flex-col bg-green-50">{children}</Content>
             </Layout>
             <Footer />
         </Layout>

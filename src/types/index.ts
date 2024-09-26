@@ -72,7 +72,9 @@ export interface OrdersState {
 }
 
 export interface Order {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [x: string]: any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: any
     status: number
     OrderID: string
@@ -102,4 +104,33 @@ export type APIUpdateOrderRequest = {
     paymentMethod: string
     total?: string
     phone?: string
+}
+
+export interface Food {
+    FoodID: string
+    Name: string
+    Description: string
+    Price: string
+    Calories: number
+    Image: string
+    CreatedAt: string
+    UpdatedAt: string
+    IsDeleted: boolean
+}
+
+export interface Statistic {
+    totalCustomers: number
+    pendingOrders: number
+    finishedOrders: number
+    totalRevenue: number
+    mostPopularFood: Food | null
+    viewLineChartByMonth: DailyData[]
+    viewLineChart: DailyData[] // Add this field for daily data
+}
+
+export interface DailyData {
+    day: number
+    users: number
+    orders: number
+    revenue: number // Revenue for the day
 }

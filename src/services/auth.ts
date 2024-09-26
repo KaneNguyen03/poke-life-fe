@@ -22,9 +22,10 @@ const signUp = async ({ email, password, address, phone, username }: {
       { email, password, address, phoneNumber: phone, username }
     )
     return data
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     console.error(error)
-    throw new Error('Invalid signup data')
+    throw new Error(error.response?.data.message)
   }
 }
 

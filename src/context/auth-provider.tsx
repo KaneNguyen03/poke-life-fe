@@ -71,7 +71,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     const resp = await authApi.logOut()
     if (resp) {
       localStorage.clear()
+
       window.location.reload()
+      window.location.href = '/'
     } else {
       setSubmitting(false)
     }

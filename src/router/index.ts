@@ -88,14 +88,6 @@ export const routes: RouteType[] = [
         allowedRoles: ['Admin'],
     },
     {
-        path: ROUTE_PATHS.ADMIN + '/order/:id',
-        name: 'admin-order-details',
-        component: Admin,
-        layout: AdminLayout,
-        protected: true,
-        allowedRoles: ['Admin'],
-    },
-    {
         path: '*',
         name: 'NotFound',
         component: NotFound,

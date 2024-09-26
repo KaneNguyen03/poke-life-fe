@@ -50,7 +50,7 @@ apiInstance.interceptors.response.use(
         }
       } catch (refreshError) {
         // If refreshing the token fails, log out the user
-        logOutApp()
+        // logOutApp()
         return Promise.reject(refreshError)
       }
     }

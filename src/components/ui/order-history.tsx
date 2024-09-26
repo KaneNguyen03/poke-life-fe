@@ -48,12 +48,12 @@ const OrderItem: React.FC<OrderItemProps> = ({ OrderID, CreatedAt, OrderStatus, 
 export const OrdersHistory: React.FC<OrdersSectionProps> = ({ orders }) => {
 
     return (
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 ">
             <h2 className="text-3xl font-bold text-center mb-8">My Orders</h2>
             <div className="max-w-3xl mx-auto">
-                {orders.map((order) => (
+                {orders ? (orders?.map((order) => (
                     <OrderItem key={order.OrderID} {...order} />
-                ))}
+                ))) : <div className="bg-white rounded-lg shadow-md p-6 mb-4">No orders found.</div>}
             </div>
         </div>
     )

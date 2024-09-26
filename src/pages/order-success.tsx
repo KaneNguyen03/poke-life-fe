@@ -29,7 +29,7 @@ const OrderSuccess = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-green-50 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
                 <div className="p-6 sm:p-8">
                     <div className="flex items-center justify-center mb-8">
