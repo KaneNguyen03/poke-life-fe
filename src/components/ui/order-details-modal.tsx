@@ -1,4 +1,5 @@
 // components/ui/OrderDetailsModal.tsx
+import ingredientApi from '@/services/ingredients'
 import orderDetailsApi from '@/services/order-details'
 import { useEffect, useState } from 'react'
 import { FaArrowLeft } from 'react-icons/fa'
@@ -25,6 +26,22 @@ interface OrderDetail {
     Food: Food
 }
 
+interface OrderDetailsModalProps {
+    isOpen: boolean
+    onClose: () => void
+    orderID: string | null
+}
+
+// New interface for ingredient
+interface Ingredient {
+    ingredientID: string
+    name: string
+    quantity: number
+    calories: number
+    price: number
+    description: string
+}
+
 const getOrderDetailsByOrderID = async (orderID: string) => {
     try {
         const response = await orderDetailsApi.getOrderDetailsByOrderID(orderID)
@@ -43,9 +60,43 @@ interface OrderDetailsModalProps {
     orderID: string | null
 }
 
+const IngredientsModal: React.FC<{ isOpen: boolean; onClose: () => void; ingredients: Ingredient[] }> = ({ isOpen, onClose, ingredients }) => {
+    if (!isOpen) return null
+
+    return (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+                <h2 className="text-2xl font-bold mb-4 text-center">Ingredients</h2>
+                <button onClick={onClose} className="inline-flex items-center px-2 py-1 text-sm text-white bg-blue-500 hover:bg-blue-600 rounded transition duration-300 mb-4">
+                    <FaArrowLeft className="mr-2" />
+                    Close
+                </button>
+                <ul className="space-y-3">
+                    {ingredients.map(ingredient => (
+                        <li key={ingredient.ingredientID} className="flex justify-between items-center p-3 bg-green-100 rounded-md shadow hover:bg-green-200 transition duration-200">
+                            <div className="flex-1">
+                                <span className="font-medium text-lg">{ingredient.name}</span>
+                                <p className="text-gray-600 text-sm">{ingredient.description}</p>
+                            </div>
+                            <div className="text-right">
+                                <span className="block text-gray-700 font-semibold">{ingredient.quantity} pcs</span>
+                                <span className="block text-green-600">${ingredient.price}</span>
+                                <span className="block text-gray-500 text-sm">Calories: {ingredient.calories}</span>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    )
+}
+
+
 const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({ isOpen, onClose, orderID }) => {
     const [orderDetails, setOrderDetails] = useState<OrderDetail[]>([])
     const [loading, setLoading] = useState(true)
+    const [selectedDishIngredients, setSelectedDishIngredients] = useState<Ingredient[]>([])
+    const [isIngredientsModalOpen, setIsIngredientsModalOpen] = useState(false)
 
     useEffect(() => {
         const fetchOrderDetails = async () => {
@@ -60,6 +111,14 @@ const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({ isOpen, onClose, 
 
         fetchOrderDetails()
     }, [orderID])
+
+    const handleDishClick = async (order: OrderDetail) => {
+        if (order.Food.Name === "Custom Dish") {
+            const ingredients = await ingredientApi.getIngredientByFoodId(order.FoodID)
+            setSelectedDishIngredients(ingredients || [])
+            setIsIngredientsModalOpen(true)
+        }
+    }
 
     if (!isOpen) return null
 
@@ -87,30 +146,39 @@ const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({ isOpen, onClose, 
     }
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-            <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-                <h2 className="text-2xl font-bold mb-4">Order Details</h2>
-                <button onClick={onClose} className="inline-flex items-center px-2 py-1 text-sm text-blue-600 hover:text-blue-800 mb-4">
-                    <FaArrowLeft className="mr-2" />
-                    Go Back
-                </button>
-                <ul className="space-y-4">
-                    {orderDetails.map((order) => (
-                        <li key={order.OrderDetailID} className="bg-green-50 rounded-lg p-4 flex shadow-md">
-                            <img src={order.Food.Image} alt={order.Food.Name} className="w-20 h-20 object-cover rounded-md mr-4" />
-                            <div className="flex-1">
-                                <h3 className="text-lg font-semibold">{order.Food.Name}</h3>
-                                <p className="text-gray-600">{order.Food.Description}</p>
-                                <div className="flex justify-between mt-2">
-                                    <p><strong>Quantity:</strong> {order.Quantity}</p>
-                                    <p className="text-green-600 font-semibold"><strong>Price:</strong> ${order.Price}</p>
-                                </div>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
+        <>
+            <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+                <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+                    <h2 className="text-2xl font-bold mb-4">Order Details</h2>
+                    <button onClick={onClose} className="inline-flex items-center px-2 py-1 text-sm text-blue-600 hover:text-blue-800 mb-4">
+                        <FaArrowLeft className="mr-2" />
+                        Go Back
+                    </button>
+                    <div className="max-h-96 overflow-y-auto">
+                        <ul className="space-y-4">
+                            {orderDetails.map((order) => (
+                                <li key={order.OrderDetailID} className="bg-green-50 rounded-lg p-4 flex shadow-md" onClick={() => handleDishClick(order)}>
+                                    <img src={order.Food.Image} alt={order.Food.Name} className="w-20 h-20 object-cover rounded-md mr-4" />
+                                    <div className="flex-1">
+                                        <h3 className="text-lg font-semibold">{order.Food.Name}</h3>
+                                        <p className="text-gray-600">{order.Food.Description}</p>
+                                        <div className="flex justify-between mt-2">
+                                            <p><strong>Quantity:</strong> {order.Quantity}</p>
+                                            <p className="text-green-600 font-semibold"><strong>Price:</strong> ${order.Price}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
+            <IngredientsModal
+                isOpen={isIngredientsModalOpen}
+                onClose={() => setIsIngredientsModalOpen(false)}
+                ingredients={selectedDishIngredients}
+            />
+        </>
     )
 }
 

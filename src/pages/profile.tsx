@@ -3,7 +3,7 @@ import { OrdersHistory } from "@/components/ui/order-history"
 import { useAuth } from "@/hooks/use-auth"
 import orderApi from "@/services/order"
 import { ChangeEvent, FormEvent, useEffect, useState } from "react"
-import { FaEdit, FaSave } from "react-icons/fa"
+import { FaSave } from "react-icons/fa"
 
 export const Profile = () => {
     const { user } = useAuth()
@@ -84,14 +84,16 @@ export const Profile = () => {
                             <div>
                                 <p className="mb-4"><strong>Name:</strong> {user?.Username}</p>
                                 <p className="mb-4"><strong>Email:</strong> {user?.Email}</p>
+                                <p className="mb-4"><strong>Addres:</strong> {user?.Address}</p>
+                                <p className="mb-4"><strong>Phone:</strong> {user?.PhoneNumber}</p>
                                 <div className="flex justify-end">
-                                    <button
+                                    {/* <button
                                         onClick={() => setIsEditing(true)}
                                         className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 flex items-center"
                                     >
                                         <FaEdit className="mr-2" />
                                         Edit Profile
-                                    </button>
+                                    </button> */}
                                 </div>
                             </div>
                         )}

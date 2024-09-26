@@ -1,3 +1,4 @@
+
 export type LoginUserAPIResponse = {
     message: string
     httpStatus: string
@@ -50,6 +51,17 @@ export type APIFoodResponse = {
     Calories: number,
     CreatedAt: string,
     UpdatedAt: string
+}
+type IngredientList = {
+    ingredientID: string,
+    quantity: number
+}
+
+export type APICustomFoodRequest = {
+    ingredientList: IngredientList[]
+    name: string
+    description: string
+    image: string
 }
 
 export type APICreateOrderRequest = {

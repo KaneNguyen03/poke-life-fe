@@ -23,10 +23,11 @@ const Dashboard: React.FC<DashboardProps> = ({ statistic, isMonthlyView, setIsMo
             </div>
             <div className="flex space-x-4 mb-4">
                 <Button onClick={() => setIsMonthlyView(true)} type={isMonthlyView ? "primary" : "default"}>
-                    Monthly View
+                    Daily View
                 </Button>
                 <Button onClick={() => setIsMonthlyView(false)} type={!isMonthlyView ? "primary" : "default"}>
-                    Daily View
+                Monthly View
+
                 </Button>
             </div>
             <div className="bg-white p-4 rounded-lg shadow-md">

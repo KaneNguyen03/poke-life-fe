@@ -1,11 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+interface Ingredient {
+    Name: string
+    Quantity: number
+    IngredientID: string
+}
 interface CartItem {
     Name: string
     Image: string
     quantity: number
     Price: number
     FoodID: string
+
+    Note?: string
+    Ingredients?: Ingredient[]
 }
 
 interface CartState {

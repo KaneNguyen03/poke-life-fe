@@ -8,6 +8,7 @@ import { Order } from '@/types'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
+import moment from 'moment'
 
 export const OrderManagement = () => {
     const dispatch: AppDispatch = useDispatch()
@@ -99,6 +100,8 @@ export const OrderManagement = () => {
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Address</th>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment</th>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
@@ -116,6 +119,8 @@ export const OrderManagement = () => {
                                     <td className="px-6 py-4 whitespace-nowrap">{order.CustomerName}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">{order.Address}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">{order.PhoneNumber}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap">{moment(order.CreatedAt).format('DD-MM-YYYY')}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap">{order.paymentMethod}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${order.OrderStatus === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
                                             order.OrderStatus === 'Finished' ? 'bg-green-100 text-green-800' :

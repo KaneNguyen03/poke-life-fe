@@ -2,6 +2,7 @@ import AuthModal from '@/components/ui/auth-modal'
 import BackShopping from '@/components/ui/back-shopping'
 import Loading from '@/components/ui/loading'
 import { useAuth } from '@/hooks/use-auth'
+import foodApi from '@/services/food'
 import orderApi from '@/services/order'
 import { RootState } from '@/store'
 import { useEffect, useState } from "react"
@@ -35,7 +36,7 @@ const Checkout = () => {
         return cartItems.reduce((total, item) => total + item.Price * item.quantity, 0)
     }
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (user == null) {
             setIsModalOpen(true)
@@ -47,19 +48,57 @@ const Checkout = () => {
             return
         }
 
-        const newArrayItems = cartItems.map((item) => ({
+        const newArrayItems = cartItems.filter(x => x.Name !== "Custom Dish").map((item) => ({
             foodID: item.FoodID,
             quantity: item?.quantity || 0,
         }))
-        const dataSubmit = {
-            ...formData,
-            orderDetails: newArrayItems,
-        }
 
         // Set loading to true
         setLoading(true)
 
-        // Call API to create order
+        // Wait for all API calls to finish
+        const resultSubmitNewFood = await Promise.all(cartItems.map(async (item) => {
+            if (item?.Ingredients?.length ?? 0 > 0) {
+                const newIngredientsList = item?.Ingredients?.map((ingredient) => ({
+                    ingredientID: ingredient.IngredientID,
+                    quantity: ingredient.Quantity
+                })) ?? []
+                const requestNewFood = {
+                    ingredientList: newIngredientsList,
+                    name: item.Name,
+                    description: item.Note || "",
+                    image: item.Image,
+                }
+
+                try {
+                    const result = await foodApi.createCustomFood(requestNewFood)
+                    return result // Assuming `result` contains the FoodID
+                } catch (error) {
+                    console.error("Error updating food:", error)
+                    return null // or handle error as needed
+                }
+            }
+            return null // return null if no ingredients
+        }))
+        // Filter out null results to ensure only successful API calls are processed
+        const validResults = resultSubmitNewFood.filter(result => result !== null)
+
+        // Create a new array that combines newArrayItems and validResults
+        const newFoodItems = validResults.map(result => ({
+            foodID: result!.FoodID, // assuming the result has a FoodID property
+            quantity: 1, // or any other quantity logic you want
+        }))
+        // Combine the existing newArrayItems with newFoodItems
+        const combinedArrayItems = [...newArrayItems, ...newFoodItems]
+        console.log("🚀 Kha ne ~ combinedArrayItems:", combinedArrayItems)
+
+
+        const dataSubmit = {
+            ...formData,
+            orderDetails: combinedArrayItems,
+        }
+
+        //Call API to create order
         orderApi.createOrder(dataSubmit)
             .then(() => {
                 toast.success("Order created successfully!")
@@ -108,9 +147,20 @@ const Checkout = () => {
                                     <div>
                                         <ul className="space-y-4">
                                             {cartItems.map((item, index) => (
-                                                <li key={index} className="flex justify-between">
-                                                    <span>{item.Name} x{item.quantity}</span>
-                                                    <span className="text-gray-600">{item.Price} USD</span>
+                                                <li key={index} className="mb-4 border-b border-gray-200 pb-2">
+                                                    <div className="flex justify-between items-center">
+                                                        <span className="font-medium text-lg">{item.Name} x{item.quantity}</span>
+                                                        <span className="text-gray-600">{item.Price} USD</span>
+                                                    </div>
+                                                    {item.Ingredients && item.Ingredients.length > 0 && (
+                                                        <ul className="ml-4 mt-2">
+                                                            {item.Ingredients.map((ingredient, ingIndex) => (
+                                                                <li key={ingIndex} className="flex justify-between text-sm text-gray-700">
+                                                                    <span>{ingredient.Name} x{ingredient.Quantity}</span>
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    )}
                                                 </li>
                                             ))}
                                         </ul>
