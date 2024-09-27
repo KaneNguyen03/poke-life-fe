@@ -18,3 +18,6 @@
 - **Tailwind CSS**: Utility-first CSS framework for styling.
 - **Next.js**: React framework for server-side rendering and static site generation.
 - **Axios**: Promise-based HTTP client for API requests.
+
+Find out more:
+https://poke-life-fe.vercel.app/
