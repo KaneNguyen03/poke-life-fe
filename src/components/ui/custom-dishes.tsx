@@ -150,15 +150,15 @@ export default function CustomDishes() {
                 </div>
 
                 <div className="mt-4 text-xl font-semibold text-green-800">
-                    Total Price: <span className="font-bold">${calculateTotalPrice()}</span>
+                    Total Price: <span className="font-bold">{calculateTotalPrice()} VND</span>
                 </div>
                 <div className="mt-2 text-xl font-semibold text-green-800">
-                    Total Calories: <span className="font-bold">{calculateTotalCalories()} kcal</span>
+                    Total Calories: <span className="font-bold">{calculateTotalCalories()} calories</span>
                 </div>
 
                 <div className="mt-6">
                     <textarea
-                        placeholder="Add a note..."
+                        placeholder="hint how to cook..."
                         value={note}
                         onChange={(e) => setNote(e.target.value)}
                         className="border border-green-500 rounded-lg p-4 w-full h-32 focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-300"
@@ -174,7 +174,7 @@ export default function CustomDishes() {
 
             {/* Modal for selecting ingredients */}
             {modalOpen && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
                     <div className="bg-white rounded-lg p-6 max-w-lg w-full shadow-lg transition-transform transform scale-95 duration-300 ease-in-out">
                         <h3 className="text-2xl font-semibold mb-4">Select Ingredients</h3>
                         <input
@@ -184,7 +184,7 @@ export default function CustomDishes() {
                             onChange={(e) => handleFilterIngredients(e.target.value)}
                         />
                         <div className="max-h-96 overflow-y-auto">
-                            {filteredIngredients.map(ingredient => (
+                            {filteredIngredients ? (filteredIngredients?.map(ingredient => (
                                 <div key={ingredient.IngredientID} className="flex items-center justify-between border-b border-gray-200 py-3">
                                     <div className="flex items-center">
                                         {ingredient.IngredientImage && (
@@ -194,7 +194,7 @@ export default function CustomDishes() {
                                             <h4 className="text-lg font-medium text-green-700">{ingredient.Name}</h4>
                                             <p className="text-gray-600">{ingredient.Description}</p>
                                             <p className="text-green-600">Calories: {ingredient.Calories}</p>
-                                            <p className="text-green-600">Price: ${ingredient.Price}</p>
+                                            <p className="text-green-600">Price: {ingredient.Price} VND</p>
                                         </div>
                                     </div>
                                     <input
@@ -205,7 +205,7 @@ export default function CustomDishes() {
                                         placeholder="Qty"
                                     />
                                 </div>
-                            ))}
+                            ))) : <div>Ingredient is empty!</div>}
                         </div>
                         <div className="flex justify-between mt-4">
                             <button onClick={() => setModalOpen(false)} className="bg-gray-500 text-white rounded-lg px-4 py-2 hover:bg-gray-600 transition duration-300">

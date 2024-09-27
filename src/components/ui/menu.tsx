@@ -50,7 +50,7 @@ export default function Menu() {
                         </div>
                     </div>
                     <div className="flex justify-between items-center mt-4 p-2">
-                        <div className="text-lg font-bold mt-2">{Price} USD</div>
+                        <div className="text-lg font-bold mt-2">{Price} VND</div>
                         <button
                             onClick={() => handleAddToCart({
                                 Name,

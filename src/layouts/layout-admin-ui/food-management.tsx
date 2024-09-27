@@ -49,7 +49,7 @@ export const FoodManagement = () => {
                             <h3 className="font-semibold text-lg mb-2">{item.Name}</h3>
                             <p className="text-gray-600">{item.Description}</p>
                             <div className="mt-4 flex justify-between items-center">
-                                <span className="text-gray-800 font-bold">${item.Price}</span>
+                                <span className="text-gray-800 font-bold">{item.Price} VND</span>
                                 <div className="flex space-x-2">
                                     <button
                                         // onClick={() => handleEditFood(item)} 

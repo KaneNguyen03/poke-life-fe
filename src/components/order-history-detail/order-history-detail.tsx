@@ -91,7 +91,7 @@ export default function OrderHistoryDetail() {
                             <p className="text-gray-600">{order.Food.Description}</p>
                             <div className="flex justify-between mt-2">
                                 <p><strong>Quantity:</strong> {order.Quantity}</p>
-                                <p className="text-green-600 font-semibold"><strong>Price:</strong> ${order.Price}</p>
+                                <p className="text-green-600 font-semibold"><strong>Price:</strong> {order.Price} VND</p>
                             </div>
                         </div>
                     </li>

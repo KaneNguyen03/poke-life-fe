@@ -40,7 +40,7 @@ const OrderItem: React.FC<OrderItemProps> = ({ OrderID, CreatedAt, OrderStatus, 
             </span>
         </div>
         <p className="text-gray-600 mb-2">Date: {formatDate(CreatedAt)}</p>
-        <p className="text-gray-600 mb-4">Total: ${TotalPrice}</p>
+        <p className="text-gray-600 mb-4">Total: {TotalPrice} VND</p>
         <button className="text-green-600 hover:text-green-800 font-semibold" onClick={() => viewOrderDetails(OrderID)}>View Details</button>
     </div>
 )

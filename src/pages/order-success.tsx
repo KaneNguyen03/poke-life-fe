@@ -56,7 +56,7 @@ const OrderSuccess = () => {
                                 },
                                     index: Key | null | undefined) => (
                                     <li key={index} className="text-gray-600">
-                                        {item.Name} - Qty: {item.quantity} - ${item.Price}
+                                        {item.Name} - Qty: {item.quantity} - {item.Price} VND
                                     </li>
                                 ))}
                             </ul>

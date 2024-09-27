@@ -151,7 +151,7 @@ const Checkout = () => {
                                                 <li key={index} className="mb-4 border-b border-gray-200 pb-2">
                                                     <div className="flex justify-between items-center">
                                                         <span className="font-medium text-lg">{item.Name} x{item.quantity}</span>
-                                                        <span className="text-gray-600">{item.Price} USD</span>
+                                                        <span className="text-gray-600">{item.Price} VND</span>
                                                     </div>
                                                     {item.Ingredients && item.Ingredients.length > 0 && (
                                                         <ul className="ml-4 mt-2">
@@ -167,7 +167,7 @@ const Checkout = () => {
                                         </ul>
                                         <div className="mt-4 flex justify-between font-semibold text-lg">
                                             <span>Total:</span>
-                                            <span>{calculateTotalPrice()} USD</span>
+                                            <span>{calculateTotalPrice()} VND</span>
                                         </div>
                                     </div>
                                 ) : (
