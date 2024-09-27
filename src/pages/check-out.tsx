@@ -10,6 +10,7 @@ import { FaArrowLeft, FaMoneyBillWave, FaQrcode } from "react-icons/fa"
 import { useSelector } from "react-redux"
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import QRCODE from '@/assets/qrcode.jpg'
 
 const Checkout = () => {
     const { user } = useAuth()
@@ -268,7 +269,7 @@ const Checkout = () => {
 
                                     {selectedPayment === "qrcode" && (
                                         <div className="mt-6">
-                                            <img src="https://example.com/qrcode.png" alt="QR Code" className="w-48 h-48 mx-auto" />
+                                            <img src={QRCODE} alt="QR Code" className="h-72 mx-auto" />
                                         </div>
                                     )}
                                 </div>
