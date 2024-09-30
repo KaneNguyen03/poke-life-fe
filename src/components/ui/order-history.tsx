@@ -1,3 +1,4 @@
+import numeral from "numeral"
 
 interface OrderItemProps {
     OrderID: string
@@ -40,7 +41,7 @@ const OrderItem: React.FC<OrderItemProps> = ({ OrderID, CreatedAt, OrderStatus, 
             </span>
         </div>
         <p className="text-gray-600 mb-2">Date: {formatDate(CreatedAt)}</p>
-        <p className="text-gray-600 mb-4">Total: {TotalPrice} VND</p>
+        <p className="text-gray-600 mb-4">Total: {numeral(TotalPrice).format('0,0')} VND</p>
         <button className="text-green-600 hover:text-green-800 font-semibold" onClick={() => viewOrderDetails(OrderID)}>View Details</button>
     </div>
 )

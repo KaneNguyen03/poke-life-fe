@@ -1,5 +1,6 @@
 import foodApi from "@/services/food" // Import your API service
 import { APIFoodResponse } from "@/types" // Make sure this type includes all relevant food properties
+import numeral from "numeral"
 import { useEffect, useState } from "react"
 
 export const FoodManagement = () => {
@@ -49,7 +50,7 @@ export const FoodManagement = () => {
                             <h3 className="font-semibold text-lg mb-2">{item.Name}</h3>
                             <p className="text-gray-600">{item.Description}</p>
                             <div className="mt-4 flex justify-between items-center">
-                                <span className="text-gray-800 font-bold">{item.Price} VND</span>
+                                <span className="text-gray-800 font-bold">{numeral(item.Price).format('0,0')} VND</span>
                                 <div className="flex space-x-2">
                                     <button
                                         // onClick={() => handleEditFood(item)} 

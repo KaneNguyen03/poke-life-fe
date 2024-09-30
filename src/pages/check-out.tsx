@@ -11,6 +11,7 @@ import { useSelector } from "react-redux"
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import QRCODE from '@/assets/qrcode.jpg'
+import numeral from 'numeral'
 
 const Checkout = () => {
     const { user } = useAuth()
@@ -151,7 +152,7 @@ const Checkout = () => {
                                                 <li key={index} className="mb-4 border-b border-gray-200 pb-2">
                                                     <div className="flex justify-between items-center">
                                                         <span className="font-medium text-lg">{item.Name} x{item.quantity}</span>
-                                                        <span className="text-gray-600">{item.Price} VND</span>
+                                                        <span className="text-gray-600">{numeral(item.Price).format('0,0')} VND</span>
                                                     </div>
                                                     {item.Ingredients && item.Ingredients.length > 0 && (
                                                         <ul className="ml-4 mt-2">
@@ -167,7 +168,7 @@ const Checkout = () => {
                                         </ul>
                                         <div className="mt-4 flex justify-between font-semibold text-lg">
                                             <span>Total:</span>
-                                            <span>{calculateTotalPrice()} VND</span>
+                                            <span>{numeral(calculateTotalPrice()).format('0,0')} VND</span>
                                         </div>
                                     </div>
                                 ) : (

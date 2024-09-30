@@ -1,3 +1,4 @@
+import numeral from 'numeral'
 import { Key, ReactPortal } from 'react'
 import { FaCheckCircle } from "react-icons/fa"
 import { IoMdArrowBack } from "react-icons/io"
@@ -56,7 +57,7 @@ const OrderSuccess = () => {
                                 },
                                     index: Key | null | undefined) => (
                                     <li key={index} className="text-gray-600">
-                                        {item.Name} - Qty: {item.quantity} - {item.Price} VND
+                                        {item.Name} - Qty: {item.quantity} - {numeral(item.Price).format('0,0')} VND
                                     </li>
                                 ))}
                             </ul>

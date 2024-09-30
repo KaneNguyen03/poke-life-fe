@@ -1,6 +1,7 @@
 // components/ui/OrderDetailsModal.tsx
 import ingredientApi from '@/services/ingredients'
 import orderDetailsApi from '@/services/order-details'
+import numeral from 'numeral'
 import { useEffect, useState } from 'react'
 import { FaArrowLeft } from 'react-icons/fa'
 
@@ -80,7 +81,7 @@ const IngredientsModal: React.FC<{ isOpen: boolean; onClose: () => void; ingredi
                             </div>
                             <div className="text-right">
                                 <span className="block text-gray-700 font-semibold">{ingredient.quantity} pcs</span>
-                                <span className="block text-green-600">{ingredient.price} VND</span>
+                                <span className="block text-green-600">{numeral(ingredient.price).format('0,0')} VND</span>
                                 <span className="block text-gray-500 text-sm">Calories: {ingredient.calories}</span>
                             </div>
                         </li>
@@ -164,7 +165,7 @@ const OrderDetailsModal: React.FC<OrderDetailsModalProps> = ({ isOpen, onClose, 
                                         <p className="text-gray-600">{order.Food.Description}</p>
                                         <div className="flex justify-between mt-2">
                                             <p><strong>Quantity:</strong> {order.Quantity}</p>
-                                            <p className="text-green-600 font-semibold"><strong>Price:</strong> {order.Price} VND</p>
+                                            <p className="text-green-600 font-semibold"><strong>Price:</strong> {numeral(order.Price).format('0,0')} VND</p>
                                         </div>
                                     </div>
                                 </li>

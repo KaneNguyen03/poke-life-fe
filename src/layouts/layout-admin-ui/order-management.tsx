@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import moment from 'moment'
+import numeral from 'numeral'
 
 export const OrderManagement = () => {
     const dispatch: AppDispatch = useDispatch()
@@ -129,7 +130,7 @@ export const OrderManagement = () => {
                                             {order.OrderStatus}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{order.TotalPrice} VND</td>
+                                    <td className="px-6 py-4 whitespace-nowrap">{numeral(order.TotalPrice).format('0,0')} VND</td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <button
                                             className="text-indigo-600 hover:text-indigo-900 mr-2"

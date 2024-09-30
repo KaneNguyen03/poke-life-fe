@@ -5,6 +5,7 @@ import { APIFoodResponse } from "@/types"
 import { useEffect, useState } from "react"
 import { useDispatch } from 'react-redux'
 import { toast } from "react-toastify"
+import numeral from "numeral"
 
 export default function Menu() {
     const { user } = useAuth()
@@ -50,7 +51,7 @@ export default function Menu() {
                         </div>
                     </div>
                     <div className="flex justify-between items-center mt-4 p-2">
-                        <div className="text-lg font-bold mt-2">{Price} VND</div>
+                        <div className="text-lg font-bold mt-2">{numeral(Price).format('0,0')} VND</div>
                         <button
                             onClick={() => handleAddToCart({
                                 Name,

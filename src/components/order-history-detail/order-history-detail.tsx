@@ -1,4 +1,5 @@
 import orderDetailsApi from '@/services/order-details'
+import numeral from 'numeral'
 import { useEffect, useState } from 'react'
 import { FaArrowLeft } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
@@ -91,7 +92,7 @@ export default function OrderHistoryDetail() {
                             <p className="text-gray-600">{order.Food.Description}</p>
                             <div className="flex justify-between mt-2">
                                 <p><strong>Quantity:</strong> {order.Quantity}</p>
-                                <p className="text-green-600 font-semibold"><strong>Price:</strong> {order.Price} VND</p>
+                                <p className="text-green-600 font-semibold"><strong>Price:</strong> {numeral(order.Price).format('0,0')} VND</p>
                             </div>
                         </div>
                     </li>

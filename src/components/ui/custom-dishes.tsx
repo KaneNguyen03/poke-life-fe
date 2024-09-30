@@ -3,6 +3,7 @@ import ingredientApi from '@/services/ingredients'
 import { AppDispatch, RootState } from '@/store'
 import { addToCart } from '@/store/slice/cart-slice'
 import { uuidv4 } from '@/utils/uuid'
+import numeral from 'numeral'
 import { MouseEvent, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
@@ -150,7 +151,7 @@ export default function CustomDishes() {
                 </div>
 
                 <div className="mt-4 text-xl font-semibold text-green-800">
-                    Total Price: <span className="font-bold">{calculateTotalPrice()} VND</span>
+                    Total Price: <span className="font-bold">{numeral(calculateTotalPrice()).format('0,0')} VND</span>
                 </div>
                 <div className="mt-2 text-xl font-semibold text-green-800">
                     Total Calories: <span className="font-bold">{calculateTotalCalories()} calories</span>
@@ -194,7 +195,7 @@ export default function CustomDishes() {
                                             <h4 className="text-lg font-medium text-green-700">{ingredient.Name}</h4>
                                             <p className="text-gray-600">{ingredient.Description}</p>
                                             <p className="text-green-600">Calories: {ingredient.Calories}</p>
-                                            <p className="text-green-600">Price: {ingredient.Price} VND</p>
+                                            <p className="text-green-600">Price: {numeral(ingredient.Price).format('0,0')} VND</p>
                                         </div>
                                     </div>
                                     <input
