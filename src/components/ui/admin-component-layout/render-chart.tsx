@@ -19,7 +19,7 @@ export const renderChart = (statistic: Statistic | null, isMonthlyView: boolean)
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey={isMonthlyView ? "day" : "name"} tick={{ fontSize: 12 }} />
                 <YAxis width={100} tickFormatter={isMonthlyView ? formatVND : defaultFormatter} />
-                <Tooltip formatter={(value: number) => formatVND(value)} />
+                <Tooltip formatter={(value: number) => isMonthlyView ? formatVND(value) : defaultFormatter(value)} />
                 <Legend />
                 <Line type="monotone" dataKey="users" stroke="#8884d8" activeDot={{ r: 8 }} />
                 <Line type="monotone" dataKey="orders" stroke="#82ca9d" />
