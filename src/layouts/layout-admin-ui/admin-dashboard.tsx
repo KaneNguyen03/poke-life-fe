@@ -22,7 +22,7 @@ const Dashboard: React.FC<DashboardProps> = ({ statistic, isMonthlyView, setIsMo
                 <MetricCard title="Finished Order" value={statistic?.finishedOrders?.toString() ?? ''} icon={<FiCoffee />} />
                 <MetricCard title="Revenue" value={
                     numeral(statistic?.totalRevenue?.toString()).format('0,0') + " VND"
-                    ?? ''} icon={<FiPieChart />} />
+                } icon={<FiPieChart />} />
             </div>
             <div className="flex space-x-4 mb-4">
                 <Button onClick={() => setIsMonthlyView(true)} type={isMonthlyView ? "primary" : "default"}>
