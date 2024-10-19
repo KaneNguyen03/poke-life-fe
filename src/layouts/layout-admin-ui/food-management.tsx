@@ -11,7 +11,8 @@ export const FoodManagement = () => {
     // Fetch food items from the API
     const fetchFoodItems = async () => {
         const items = await foodApi.getAllFood()
-        setFoodItems(items || [])
+        const subFoodItems = items ? items.filter(x => x.Name !== "Custom Dish") : []
+        setFoodItems(subFoodItems)
     }
 
     useEffect(() => {
@@ -51,7 +52,7 @@ export const FoodManagement = () => {
                             <p className="text-gray-600">{item.Description}</p>
                             <div className="mt-4 flex justify-between items-center">
                                 <span className="text-gray-800 font-bold">{numeral(item.Price).format('0,0')} VND</span>
-                                <div className="flex space-x-2">
+                                {/* <div className="flex space-x-2">
                                     <button
                                         // onClick={() => handleEditFood(item)} 
                                         className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Edit</button>
@@ -59,7 +60,7 @@ export const FoodManagement = () => {
                                         // () => handleDeleteFood(item.FoodID)
                                         () => { return null }
                                     } className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Delete</button>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
