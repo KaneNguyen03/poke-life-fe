@@ -42,8 +42,8 @@ export const updateOrder = createAsyncThunk<Order, { id: string; updatedData: AP
                 PhoneNumber: updatedData.phone ?? "",
                 Address: updatedData.address,
                 OrderStatus: updatedData.orderStatus,
-                CreatedAt: "",
-                UpdatedAt: "",
+                CreatedAt: updatedData.createdAt ?? "",
+                UpdatedAt: new Date().toISOString(),
                 IsDeleted: false,
                 paymentMethod: updatedData.paymentMethod
             }

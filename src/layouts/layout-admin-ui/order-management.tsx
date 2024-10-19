@@ -77,6 +77,7 @@ export const OrderManagement = () => {
                 paymentMethod: selectedOrder.paymentMethod,
                 total: selectedOrder.TotalPrice,
                 phone: selectedOrder.PhoneNumber,
+                createdAt: selectedOrder.CreatedAt
             }
             dispatch(updateOrder({ id: selectedOrder.OrderID, updatedData: request }))
             setIsModalOpen(false)
@@ -94,63 +95,65 @@ export const OrderManagement = () => {
                 onKeywordChange={handleKeywordChange}
             />
             <div className="bg-white shadow-md rounded-lg overflow-hidden">
-                <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
-                        <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Address</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
-                        {loading ? (
+                <div className="overflow-x-auto"> {/* Added container div for horizontal scrolling */}
+                    <table className="min-w-full divide-y divide-gray-200">
+                        <thead className="bg-gray-50">
                             <tr>
-                                <td colSpan={5} className="text-center py-4">Loading...</td>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Address</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                             </tr>
-                        ) : (
-                            Array.isArray(orders) && orders.map((order) => (
-                                <tr key={order.OrderID}>
-                                    <td className="px-6 py-4 whitespace-nowrap">{order.OrderID}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{order.CustomerName}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{order.Address}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{order.PhoneNumber}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{moment(order.CreatedAt).format('DD-MM-YYYY')}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{order.paymentMethod}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
-                                        <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${order.OrderStatus === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
-                                            order.OrderStatus === 'Finished' ? 'bg-green-100 text-green-800' :
-                                                'bg-red-100 text-red-800'
-                                            }`}>
-                                            {order.OrderStatus}
-                                        </span>
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{numeral(order.TotalPrice).format('0,0')} VND</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <button
-                                            className="text-indigo-600 hover:text-indigo-900 mr-2"
-                                            onClick={() => openDetailsModal(order)} // Open details modal
-                                        >
-                                            View
-                                        </button>
-                                        <button
-                                            className={`text-green-600 hover:text-green-900 ${order.OrderStatus === 'Finished' || order.OrderStatus === 'Cancelled' ? 'opacity-50 cursor-not-allowed' : ''}`}
-                                            onClick={() => openModal(order)}
-                                            disabled={order.OrderStatus === 'Finished' || order.OrderStatus === 'Cancelled'}
-                                        >
-                                            Process
-                                        </button>
-                                    </td>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                            {loading ? (
+                                <tr>
+                                    <td colSpan={9} className="text-center py-4">Loading...</td>
                                 </tr>
-                            ))
-                        )}
-                    </tbody>
-                </table>
+                            ) : (
+                                Array.isArray(orders) && orders.map((order) => (
+                                    <tr key={order.OrderID}>
+                                        <td className="px-6 py-4 whitespace-nowrap">{order.OrderID}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{order.CustomerName}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{order.Address}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{order.PhoneNumber}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{moment(order.CreatedAt).format('DD-MM-YYYY')}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{order.paymentMethod}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">
+                                            <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${order.OrderStatus === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
+                                                order.OrderStatus === 'Finished' ? 'bg-green-100 text-green-800' :
+                                                    'bg-red-100 text-red-800'
+                                                }`}>
+                                                {order.OrderStatus}
+                                            </span>
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{numeral(order.TotalPrice).format('0,0')} VND</td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <button
+                                                className="text-indigo-600 hover:text-indigo-900 mr-2"
+                                                onClick={() => openDetailsModal(order)} // Open details modal
+                                            >
+                                                View
+                                            </button>
+                                            <button
+                                                className={`text-green-600 hover:text-green-900 ${order.OrderStatus === 'Finished' || order.OrderStatus === 'Cancelled' ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                                onClick={() => openModal(order)}
+                                                disabled={order.OrderStatus === 'Finished' || order.OrderStatus === 'Cancelled'}
+                                            >
+                                                Process
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))
+                            )}
+                        </tbody>
+                    </table>
+                </div>
                 <PageIndexSelector
                     pageIndex={pageIndex}
                     totalPages={pagination?.totalPages} // Safely access totalPages

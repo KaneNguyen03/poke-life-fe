@@ -116,6 +116,7 @@ export type APIUpdateOrderRequest = {
     paymentMethod: string
     total?: string
     phone?: string
+    createdAt?: string
 }
 
 export interface Food {
