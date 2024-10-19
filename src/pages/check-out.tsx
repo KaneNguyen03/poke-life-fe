@@ -92,7 +92,6 @@ const Checkout = () => {
         }))
         // Combine the existing newArrayItems with newFoodItems
         const combinedArrayItems = [...newArrayItems, ...newFoodItems]
-        console.log("🚀 Kha ne ~ combinedArrayItems:", combinedArrayItems)
 
 
         const dataSubmit = {
