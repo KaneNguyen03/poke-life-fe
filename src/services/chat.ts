@@ -5,8 +5,7 @@ import { ChatMessage, APICreateChatRequest } from "@/types"
 const fetchChatHistory = async (userId: string) => {
     try {
         const response = await apiInstance.get<ChatMessage[]>(`/chat/${userId}`)
-        console.log('Chat history fetched:', response.data)
-        return response.data // Return the fetched chat messages
+        return response.data 
     } catch (error) {
         console.error('Error fetching chat history:', error)
     }
@@ -23,9 +22,9 @@ const createChatMessage = async (chatMessage: APICreateChatRequest) => {
     }
 }
 
-const fetchCustomers = async () => {
+const fetchAllChats = async () => {
     try {
-        const response = await apiInstance.get('/chat/customers')
+        const response = await apiInstance.get('/chat')
         return response.data
     }
     catch (error) {
@@ -35,7 +34,7 @@ const fetchCustomers = async () => {
 const chatApi = {
     fetchChatHistory,
     createChatMessage,
-    fetchCustomers
+    fetchAllChats
 }
 
 export default chatApi
