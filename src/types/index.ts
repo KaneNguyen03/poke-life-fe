@@ -147,3 +147,17 @@ export interface DailyData {
     orders: number
     revenue: number // Revenue for the day
 }
+
+export interface APICreateChatRequest {
+    sender: 'admin' | 'customer' // The role of the sender
+    text: string // The message content
+    userId: string // The ID of the user (customer) the message is directed to
+}
+
+// Type for a chat message
+export interface ChatMessage {
+    sender: 'admin' | 'customer' // The role of the sender
+    text: string // The message content
+    userId: string // The ID of the user (customer)
+    createdAt: Date // Timestamp of when the message was created
+}

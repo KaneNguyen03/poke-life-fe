@@ -1,4 +1,5 @@
-// Admin.tsx
+// src/pages/Admin.tsx
+import Chat from "@/components/chat/chat"
 import Header from "@/components/ui/admin-component-layout/header"
 import Sidebar from "@/components/ui/admin-component-layout/side-bar"
 import { useAuth } from "@/hooks/use-auth"
@@ -64,6 +65,7 @@ const Admin = () => {
           {renderContent()}
         </main>
       </div>
+      <Chat />
     </div>
   )
 }
