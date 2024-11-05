@@ -3,7 +3,7 @@ import { APICreateChatRequest } from '@/types'
 import React, { useEffect, useState } from 'react'
 import { io } from 'socket.io-client'
 
-const socket = io(import.meta.env.VITE_API_SECRET) 
+const socket = io(import.meta.env.VITE_API_SECRET)
 
 interface ChatMessage {
     sender: string
@@ -84,7 +84,7 @@ const AdminChat: React.FC = () => {
     }
 
     return (
-        <div className={`fixed bottom-0 right-0 ${isOpen ? 'h-fit' : 'h-12'} w-64 bg-white shadow-lg transition-all duration-300 rounded-lg overflow-hidden`}>
+        <div className={`fixed bottom-0 right-0 ${isOpen ? 'h-96' : 'h-12'} w-64 bg-white shadow-lg transition-all duration-300 rounded-lg overflow-hidden`}>
             <div className="flex items-center justify-between p-4 bg-blue-600 text-white">
                 <span className="font-bold text-lg">Admin Chat</span>
                 <button onClick={() => setIsOpen(!isOpen)} className="bg-blue-800 hover:bg-blue-700 px-2 py-1 rounded">
@@ -92,8 +92,8 @@ const AdminChat: React.FC = () => {
                 </button>
             </div>
             {isOpen && (
-                <div className="flex flex-col">
-                    <div className="flex-1 overflow-y-auto p-4 bg-gray-50">
+                <div className="flex flex-col h-full">
+                    <div className="overflow-y-auto p-4 bg-gray-50 h-1/4">
                         <h4 className="font-bold text-gray-800">Select Customer:</h4>
                         <ul className="mt-2 space-y-2">
                             {customers.map((customer) => (
@@ -109,7 +109,7 @@ const AdminChat: React.FC = () => {
                         </ul>
                     </div>
 
-                    <div className="flex-1 overflow-y-auto p-4 bg-white">
+                    <div className="overflow-y-auto p-4 bg-white h-2/4">
                         <div className="space-y-2">
                             {messages.map((msg, index) => (
                                 <div key={index} className={`mb-1 p-2 rounded ${msg.sender === 'admin' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'}`}>
@@ -117,9 +117,10 @@ const AdminChat: React.FC = () => {
                                 </div>
                             ))}
                         </div>
+
                     </div>
 
-                    <div className="p-4 bg-gray-100 flex items-center gap-4">
+                    <div className="bg-gray-100 flex items-center gap-4">
                         <input
                             type="text"
                             value={message}
