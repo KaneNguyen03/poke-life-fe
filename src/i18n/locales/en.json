@@ -1,0 +1,300 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "menu": "Menu",
+    "customDishes": "Custom Dishes",
+    "workouts": "Workouts",
+    "blog": "Blog",
+    "reviews": "Reviews",
+    "profile": "Profile",
+    "login": "Login",
+    "logout": "Logout",
+    "cart": "Cart"
+  },
+  "hero": {
+    "getStarted": "Get Started",
+    "title": "Healthy Food, Happy Life",
+    "subtitle": "Discover fresh, delicious, and nutritious meals"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "username": "Username",
+    "phone": "Phone Number",
+    "address": "Address",
+    "loginTitle": "Welcome Back",
+    "registerTitle": "Create Account",
+    "forgotPassword": "Forgot Password?",
+    "rememberMe": "Remember Me",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?",
+    "loginSuccess": "Login successful!",
+    "registerSuccess": "Account created successfully!",
+    "logoutSuccess": "Logged out successfully!",
+    "loginRequired": "Please login to continue",
+    "invalidCredentials": "Invalid email or password"
+  },
+  "menu": {
+    "title": "Our Menu",
+    "subtitle": "Fresh, healthy, and delicious poke bowls made with the finest ingredients",
+    "addToCart": "Add to Cart",
+    "addedToCart": "{{itemName}} added to cart!",
+    "loginToOrder": "Login to Order",
+    "calories": "calories",
+    "price": "Price",
+    "loading": "Loading menu...",
+    "error": "Failed to load menu items",
+    "guestCartInfo": "🛒 Shopping as a guest",
+    "guestCartDescription": "You can add items to your cart. Just sign in during checkout to complete your order!"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "total": "Total",
+    "checkout": "Checkout",
+    "continueShopping": "Continue Shopping",
+    "remove": "Remove",
+    "quantity": "Quantity",
+    "addedToCart": "has been added to your cart!"
+  },
+  "order": {
+    "orderHistory": "Order History",
+    "orderDetails": "Order Details",
+    "orderStatus": "Order Status",
+    "orderDate": "Order Date",
+    "orderTotal": "Order Total",
+    "customerInfo": "Customer Information",
+    "paymentMethod": "Payment Method",
+    "pending": "Pending",
+    "cooking": "Cooking",
+    "finished": "Finished",
+    "cancelled": "Cancelled"
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "userManagement": "User Management",
+    "orderManagement": "Order Management",
+    "foodManagement": "Food Management",
+    "totalUsers": "Total Users",
+    "pendingOrders": "Pending Orders",
+    "finishedOrders": "Finished Orders",
+    "completedOrders": "Completed Orders",
+    "revenue": "Revenue",
+    "totalRevenue": "Total Revenue",
+    "dailyView": "Daily View",
+    "monthlyView": "Monthly View",
+    "title": "Admin Dashboard",
+    "subtitle": "Manage your restaurant efficiently",
+    "overview": "Dashboard Overview",
+    "description": "Monitor your restaurant's performance and key metrics",
+    "realTimeData": "Real-time data",
+    "analyticsTitle": "Analytics Overview",
+    "analyticsDesc": "Track user engagement, orders, and revenue trends",
+    "administrator": "Administrator",
+    "logout": "Logout",
+    "vsLastMonth": "vs last month"
+  },
+  "forms": {
+    "required": "This field is required",
+    "invalidEmail": "Invalid email format",
+    "passwordTooShort": "Password must be at least 6 characters",
+    "passwordsNotMatch": "Passwords do not match",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "submit": "Submit"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success!",
+    "warning": "Warning",
+    "info": "Information",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "viewBy": "View by",
+    "noData": "No data available",
+    "welcome": "Welcome",
+    "language": "Language"
+  },
+  "about": {
+    "title": "We're...",
+    "subtitle": "Learn more about our story and mission",
+    "description": {
+      "part1": "MÂM, a passionate and creative startup group, with a mission to bring you healthy and delicious meals.",
+      "highlight": "the perfect combination of pokebowl, soumaki and eatclean",
+      "part2": ". We utilize the freshest ingredients, combined with special recipes to create dishes that are not only delicious but also good for your health."
+    },
+    "learnMore": "MORE ABOUT US",
+    "stats": {
+      "dishes": "Number of Dishes",
+      "experience": "Year of Experience"
+    },
+    "features": {
+      "yummy": {
+        "title": "Yummy",
+        "description": "We not only pay attention to health but also ensure that each dish is delicious and attractive, giving you the most optimal enjoyment."
+      },
+      "healthy": {
+        "title": "Healthy",
+        "description": "We are committed to using fresh ingredients, no preservatives and cooking in the eatclean style, bringing you nutritious and healthy meals."
+      },
+      "balance": {
+        "title": "Balance",
+        "description": "Each dish at MÂM is designed to provide all the necessary nutrients, helping you maintain a balanced and healthy lifestyle."
+      },
+      "clean": {
+        "title": "Clean",
+        "description": "We always put hygiene standards first, from choosing ingredients to processing, ensuring every meal is safe and pure."
+      }
+    }
+  },
+  "reviews": {
+    "title": "Customer Reviews",
+    "subtitle": "What our customers are saying about our delicious and healthy meals",
+    "showAll": "Show All Reviews",
+    "hideAll": "Hide Reviews"
+  },
+  "blog": {
+    "title": "Eat Clean Blog",
+    "subtitle": "Discover more about clean eating, recipes, and health tips in our blog. Stay informed and inspired to live a healthier lifestyle!",
+    "readMore": "Read More",
+    "minRead": "min read",
+    "categories": {
+      "health": "Health",
+      "recipes": "Recipes",
+      "lifestyle": "Lifestyle"
+    },
+    "posts": {
+      "cleanEating": {
+        "title": "The Benefits of Clean Eating",
+        "description": "Explore the numerous health benefits of adopting a clean eating lifestyle, including improved energy levels, better digestion, and weight management."
+      },
+      "recipes": {
+        "title": "Delicious Clean Eating Recipes",
+        "description": "Discover a collection of mouth-watering clean eating recipes that are easy to prepare and packed with nutrients. Perfect for any meal of the day!"
+      },
+      "sustainable": {
+        "title": "Tips for Sustainable Clean Eating",
+        "description": "Learn how to maintain a sustainable clean eating routine, including tips for grocery shopping, meal prepping, and staying motivated."
+      }
+    },
+    "cta": {
+      "title": "Want to Learn More?",
+      "description": "Subscribe to our newsletter for more healthy eating tips, recipes, and wellness insights delivered straight to your inbox.",
+      "button": "Subscribe Now"
+    }
+  },
+  "workouts": {
+    "title": "Stay Active with Our Workouts",
+    "subtitle": "Complement your healthy eating with our curated workout videos designed to help you stay fit and energized throughout your wellness journey.",
+    "watchVideo": "Watch Video",
+    "types": {
+      "yoga": "Yoga",
+      "cardio": "Cardio",
+      "strength": "Strength"
+    },
+    "difficulty": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    },
+    "yoga": {
+      "title": "Yoga for Beginners",
+      "description": "Start your day with a relaxing yoga session that improves flexibility and mindfulness."
+    },
+    "hiit": {
+      "title": "30-Minute HIIT",
+      "description": "Burn calories with this high-intensity interval training workout for maximum results."
+    },
+    "strength": {
+      "title": "Strength Training",
+      "description": "Build muscle and improve your overall strength with our comprehensive training routine."
+    },
+    "cta": {
+      "title": "Ready to Transform Your Fitness?",
+      "description": "Get a personalized workout plan tailored to your fitness level and goals, or explore our complete video library.",
+      "personalPlan": "Get Personal Plan",
+      "viewAll": "View All Workouts"
+    }
+  },
+  "checkout": {
+    "title": "Checkout",
+    "subtitle": "Review your order and complete your purchase",
+    "backToCart": "Back to Cart",
+    "orderSummary": "Order Summary",
+    "shippingInfo": "Shipping Information",
+    "shippingSubtitle": "Where should we deliver your order?",
+    "paymentMethod": "Payment Method",
+    "paymentSubtitle": "Choose your preferred payment option",
+    "customIngredients": "Custom Ingredients",
+    "emptyCart": "Your cart is empty",
+    "total": "Total",
+    "placeOrder": "Place Order",
+    "success": "Order created successfully!",
+    "error": "Failed to create order. Please try again.",
+    "form": {
+      "fullName": "Full Name",
+      "phoneNumber": "Phone Number",
+      "address": "Delivery Address",
+      "namePlaceholder": "Enter your full name",
+      "phonePlaceholder": "Enter your phone number",
+      "addressPlaceholder": "Enter your delivery address"
+    },
+    "payment": {
+      "cod": "Cash on Delivery",
+      "codDescription": "Pay when you receive your order",
+      "qrcode": "QR Code Payment",
+      "qrcodeDescription": "Scan QR code to pay instantly",
+      "scanQR": "Scan QR Code to Pay",
+      "qrInstructions": "Use your banking app to scan this QR code and complete payment"
+    },
+    "validation": {
+      "nameRequired": "Full name is required",
+      "phoneRequired": "Phone number is required",
+      "phoneInvalid": "Please enter a valid phone number",
+      "addressRequired": "Delivery address is required",
+      "formErrors": "Please fix the errors in the form"
+    }
+  },
+  "profile": {
+    "title": "Welcome, {{name}}",
+    "subtitle": "Manage your account and view your order history",
+    "tabs": {
+      "profile": "Profile",
+      "orders": "Order History"
+    },
+    "personalInfo": "Personal Information",
+    "personalInfoDesc": "Update your account details and preferences",
+    "edit": "Edit Profile",
+    "saveChanges": "Save Changes",
+    "fields": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "address": "Address"
+    },
+    "placeholders": {
+      "name": "Enter your full name",
+      "email": "Enter your email address",
+      "phone": "Enter your phone number",
+      "address": "Enter your address"
+    },
+    "notProvided": "Not provided"
+  },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "contactInfo": "Contact Info",
+    "allRightsReserved": "All rights reserved"
+  }
+}

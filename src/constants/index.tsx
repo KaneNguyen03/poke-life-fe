@@ -1,11 +1,7 @@
-import { FiCoffee, FiPieChart, FiShoppingCart } from "react-icons/fi"
+// This file is deprecated - constants have been moved to utils/constants/
+// Please import from the new location instead
 
-export const navItems = [
-    { name: "Dashboard", icon: <FiPieChart /> },
-    // { name: "User", icon: <FiUsers /> },
-    { name: "Order", icon: <FiShoppingCart /> },
-    { name: "Food", icon: <FiCoffee /> },
-]
+export { ADMIN_NAV_ITEMS as navItems } from '@/utils/constants/navigation'
 
 export const dummyChartData = [
     { name: "Jan", users: 400, orders: 240, amt: 2400 },

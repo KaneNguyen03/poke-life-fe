@@ -10,17 +10,7 @@ import OrderSuccess from "@/pages/order-success"
 import { Profile } from "@/pages/profile"
 import Register from "@/pages/register"
 import { ComponentType, ReactNode } from "react"
-
-export const ROUTE_PATHS = {
-    ROOT: '/',
-    LOGIN: '/login',
-    SIGNUP: '/signup',
-    PROFILE: '/profile',
-    ORDER_HISTORY_DETAIL: '/order-history',
-    ADMIN: '/admin',
-    CHECKOUT: '/check-out',
-    ORDER_SUCCESS: '/order-success',
-}
+import { ROUTE_PATHS } from "@/utils/constants/routes"
 
 interface RouteType {
     path: string

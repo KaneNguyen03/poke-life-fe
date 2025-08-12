@@ -1,0 +1,300 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "menu": "Thực đơn",
+    "customDishes": "Món tùy chỉnh",
+    "workouts": "Tập luyện",
+    "blog": "Blog",
+    "reviews": "Đánh giá",
+    "profile": "Hồ sơ",
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "cart": "Giỏ hàng"
+  },
+  "hero": {
+    "getStarted": "Bắt đầu",
+    "title": "Thức ăn lành mạnh, Cuộc sống hạnh phúc",
+    "subtitle": "Khám phá những bữa ăn tươi ngon, bổ dưỡng"
+  },
+  "auth": {
+    "signIn": "Đăng nhập",
+    "signUp": "Đăng ký",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "username": "Tên người dùng",
+    "phone": "Số điện thoại",
+    "address": "Địa chỉ",
+    "loginTitle": "Chào mừng trở lại",
+    "registerTitle": "Tạo tài khoản",
+    "forgotPassword": "Quên mật khẩu?",
+    "rememberMe": "Ghi nhớ đăng nhập",
+    "alreadyHaveAccount": "Đã có tài khoản?",
+    "dontHaveAccount": "Chưa có tài khoản?",
+    "loginSuccess": "Đăng nhập thành công!",
+    "registerSuccess": "Tạo tài khoản thành công!",
+    "logoutSuccess": "Đăng xuất thành công!",
+    "loginRequired": "Vui lòng đăng nhập để tiếp tục",
+    "invalidCredentials": "Email hoặc mật khẩu không đúng"
+  },
+  "menu": {
+    "title": "Thực đơn của chúng tôi",
+    "subtitle": "Những bát poke tươi ngon, lành mạnh được làm từ những nguyên liệu tốt nhất",
+    "addToCart": "Thêm vào giỏ",
+    "addedToCart": "{{itemName}} đã được thêm vào giỏ hàng!",
+    "loginToOrder": "Đăng nhập để đặt hàng",
+    "calories": "calo",
+    "price": "Giá",
+    "loading": "Đang tải thực đơn...",
+    "error": "Không thể tải thực đơn",
+    "guestCartInfo": "🛒 Mua sắm với tư cách khách",
+    "guestCartDescription": "Bạn có thể thêm món vào giỏ hàng. Chỉ cần đăng nhập khi thanh toán để hoàn tất đơn hàng!"
+  },
+  "cart": {
+    "title": "Giỏ hàng",
+    "empty": "Giỏ hàng của bạn trống",
+    "total": "Tổng cộng",
+    "checkout": "Thanh toán",
+    "continueShopping": "Tiếp tục mua sắm",
+    "remove": "Xóa",
+    "quantity": "Số lượng",
+    "addedToCart": "đã được thêm vào giỏ hàng!"
+  },
+  "order": {
+    "orderHistory": "Lịch sử đơn hàng",
+    "orderDetails": "Chi tiết đơn hàng",
+    "orderStatus": "Trạng thái đơn hàng",
+    "orderDate": "Ngày đặt hàng",
+    "orderTotal": "Tổng đơn hàng",
+    "customerInfo": "Thông tin khách hàng",
+    "paymentMethod": "Phương thức thanh toán",
+    "pending": "Đang chờ",
+    "cooking": "Đang nấu",
+    "finished": "Hoàn thành",
+    "cancelled": "Đã hủy"
+  },
+  "admin": {
+    "dashboard": "Bảng điều khiển",
+    "userManagement": "Quản lý người dùng",
+    "orderManagement": "Quản lý đơn hàng",
+    "foodManagement": "Quản lý món ăn",
+    "totalUsers": "Tổng người dùng",
+    "pendingOrders": "Đơn hàng chờ",
+    "finishedOrders": "Đơn hàng hoàn thành",
+    "completedOrders": "Đơn hàng hoàn thành",
+    "revenue": "Doanh thu",
+    "totalRevenue": "Tổng doanh thu",
+    "dailyView": "Xem theo ngày",
+    "monthlyView": "Xem theo tháng",
+    "title": "Bảng điều khiển quản trị",
+    "subtitle": "Quản lý nhà hàng hiệu quả",
+    "overview": "Tổng quan bảng điều khiển",
+    "description": "Theo dõi hiệu suất và các chỉ số chính của nhà hàng",
+    "realTimeData": "Dữ liệu thời gian thực",
+    "analyticsTitle": "Tổng quan phân tích",
+    "analyticsDesc": "Theo dõi tương tác người dùng, đơn hàng và xu hướng doanh thu",
+    "administrator": "Quản trị viên",
+    "logout": "Đăng xuất",
+    "vsLastMonth": "so với tháng trước"
+  },
+  "forms": {
+    "required": "Trường này là bắt buộc",
+    "invalidEmail": "Định dạng email không hợp lệ",
+    "passwordTooShort": "Mật khẩu phải có ít nhất 6 ký tự",
+    "passwordsNotMatch": "Mật khẩu không khớp",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "edit": "Chỉnh sửa",
+    "delete": "Xóa",
+    "confirm": "Xác nhận",
+    "submit": "Gửi"
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Đã xảy ra lỗi",
+    "success": "Thành công!",
+    "warning": "Cảnh báo",
+    "info": "Thông tin",
+    "close": "Đóng",
+    "back": "Quay lại",
+    "next": "Tiếp theo",
+    "previous": "Trước",
+    "search": "Tìm kiếm",
+    "filter": "Lọc",
+    "viewBy": "Xem theo",
+    "noData": "Không có dữ liệu",
+    "welcome": "Chào mừng",
+    "language": "Ngôn ngữ"
+  },
+  "about": {
+    "title": "Chúng tôi là...",
+    "subtitle": "Tìm hiểu thêm về câu chuyện và sứ mệnh của chúng tôi",
+    "description": {
+      "part1": "MÂM, một nhóm khởi nghiệp đam mê và sáng tạo, với sứ mệnh mang đến cho bạn những bữa ăn lành mạnh và ngon miệng.",
+      "highlight": "sự kết hợp hoàn hảo giữa pokebowl, soumaki và eatclean",
+      "part2": ". Chúng tôi sử dụng những nguyên liệu tươi ngon nhất, kết hợp với công thức đặc biệt để tạo ra những món ăn không chỉ ngon mà còn tốt cho sức khỏe."
+    },
+    "learnMore": "TÌM HIỂU THÊM VỀ CHÚNG TÔI",
+    "stats": {
+      "dishes": "Số lượng món ăn",
+      "experience": "Năm kinh nghiệm"
+    },
+    "features": {
+      "yummy": {
+        "title": "Ngon miệng",
+        "description": "Chúng tôi không chỉ chú trọng đến sức khỏe mà còn đảm bảo mỗi món ăn đều ngon miệng và hấp dẫn, mang đến cho bạn sự thưởng thức tối ưu nhất."
+      },
+      "healthy": {
+        "title": "Lành mạnh",
+        "description": "Chúng tôi cam kết sử dụng nguyên liệu tươi ngon, không chất bảo quản và chế biến theo phong cách eatclean, mang đến những bữa ăn bổ dưỡng và tốt cho sức khỏe."
+      },
+      "balance": {
+        "title": "Cân bằng",
+        "description": "Mỗi món ăn tại MÂM được thiết kế để cung cấp đầy đủ các chất dinh dưỡng cần thiết, giúp bạn duy trì lối sống cân bằng và khỏe mạnh."
+      },
+      "clean": {
+        "title": "Sạch sẽ",
+        "description": "Chúng tôi luôn đặt tiêu chuẩn vệ sinh lên hàng đầu, từ việc chọn nguyên liệu đến chế biến, đảm bảo mỗi bữa ăn đều an toàn và trong sạch."
+      }
+    }
+  },
+  "reviews": {
+    "title": "Đánh giá khách hàng",
+    "subtitle": "Khách hàng nói gì về những bữa ăn ngon miệng và lành mạnh của chúng tôi",
+    "showAll": "Xem tất cả đánh giá",
+    "hideAll": "Ẩn đánh giá"
+  },
+  "blog": {
+    "title": "Blog Eat Clean",
+    "subtitle": "Khám phá thêm về chế độ ăn sạch, công thức nấu ăn và mẹo sức khỏe trong blog của chúng tôi. Cập nhật thông tin và cảm hứng để sống khỏe mạnh hơn!",
+    "readMore": "Đọc thêm",
+    "minRead": "phút đọc",
+    "categories": {
+      "health": "Sức khỏe",
+      "recipes": "Công thức",
+      "lifestyle": "Lối sống"
+    },
+    "posts": {
+      "cleanEating": {
+        "title": "Lợi ích của việc ăn sạch",
+        "description": "Khám phá những lợi ích sức khỏe to lớn của việc áp dụng lối sống ăn sạch, bao gồm cải thiện mức năng lượng, tiêu hóa tốt hơn và quản lý cân nặng."
+      },
+      "recipes": {
+        "title": "Công thức ăn sạch ngon miệng",
+        "description": "Khám phá bộ sưu tập các công thức ăn sạch hấp dẫn, dễ chế biến và đầy dinh dưỡng. Hoàn hảo cho mọi bữa ăn trong ngày!"
+      },
+      "sustainable": {
+        "title": "Mẹo ăn sạch bền vững",
+        "description": "Học cách duy trì thói quen ăn sạch bền vững, bao gồm mẹo mua sắm thực phẩm, chuẩn bị bữa ăn và giữ động lực."
+      }
+    },
+    "cta": {
+      "title": "Muốn tìm hiểu thêm?",
+      "description": "Đăng ký nhận bản tin của chúng tôi để nhận thêm mẹo ăn uống lành mạnh, công thức nấu ăn và thông tin chăm sóc sức khỏe được gửi thẳng đến hộp thư của bạn.",
+      "button": "Đăng ký ngay"
+    }
+  },
+  "workouts": {
+    "title": "Giữ Gìn Sức Khỏe Với Bài Tập Của Chúng Tôi",
+    "subtitle": "Bổ sung cho chế độ ăn lành mạnh với các video tập luyện được tuyển chọn, giúp bạn giữ dáng và tràn đầy năng lượng trong hành trình chăm sóc sức khỏe.",
+    "watchVideo": "Xem Video",
+    "types": {
+      "yoga": "Yoga",
+      "cardio": "Cardio",
+      "strength": "Cơ Bắp"
+    },
+    "difficulty": {
+      "beginner": "Người Mới",
+      "intermediate": "Trung Bình",
+      "advanced": "Nâng Cao"
+    },
+    "yoga": {
+      "title": "Yoga Cho Người Mới Bắt Đầu",
+      "description": "Bắt đầu ngày mới với buổi tập yoga thư giãn giúp cải thiện sự linh hoạt và tâm trí tỉnh thức."
+    },
+    "hiit": {
+      "title": "HIIT 30 Phút",
+      "description": "Đốt cháy calo với bài tập cường độ cao này để đạt hiệu quả tối đa."
+    },
+    "strength": {
+      "title": "Tập Cơ Bắp",
+      "description": "Xây dựng cơ bắp và cải thiện sức mạnh tổng thể với chương trình tập luyện toàn diện của chúng tôi."
+    },
+    "cta": {
+      "title": "Sẵn Sàng Thay Đổi Thể Hình?",
+      "description": "Nhận kế hoạch tập luyện cá nhân phù hợp với trình độ và mục tiêu của bạn, hoặc khám phá thư viện video đầy đủ của chúng tôi.",
+      "personalPlan": "Nhận Kế Hoạch Cá Nhân",
+      "viewAll": "Xem Tất Cả Bài Tập"
+    }
+  },
+  "checkout": {
+    "title": "Thanh Toán",
+    "subtitle": "Xem lại đơn hàng và hoàn tất mua hàng",
+    "backToCart": "Quay lại giỏ hàng",
+    "orderSummary": "Tóm tắt đơn hàng",
+    "shippingInfo": "Thông tin giao hàng",
+    "shippingSubtitle": "Chúng tôi nên giao hàng đến đâu?",
+    "paymentMethod": "Phương thức thanh toán",
+    "paymentSubtitle": "Chọn phương thức thanh toán ưa thích",
+    "customIngredients": "Nguyên liệu tùy chỉnh",
+    "emptyCart": "Giỏ hàng của bạn trống",
+    "total": "Tổng cộng",
+    "placeOrder": "Đặt hàng",
+    "success": "Đặt hàng thành công!",
+    "error": "Không thể tạo đơn hàng. Vui lòng thử lại.",
+    "form": {
+      "fullName": "Họ và tên",
+      "phoneNumber": "Số điện thoại",
+      "address": "Địa chỉ giao hàng",
+      "namePlaceholder": "Nhập họ và tên của bạn",
+      "phonePlaceholder": "Nhập số điện thoại",
+      "addressPlaceholder": "Nhập địa chỉ giao hàng"
+    },
+    "payment": {
+      "cod": "Thanh toán khi giao hàng",
+      "codDescription": "Thanh toán khi nhận hàng",
+      "qrcode": "Thanh toán QR Code",
+      "qrcodeDescription": "Quét mã QR để thanh toán ngay",
+      "scanQR": "Quét mã QR để thanh toán",
+      "qrInstructions": "Sử dụng ứng dụng ngân hàng để quét mã QR này và hoàn tất thanh toán"
+    },
+    "validation": {
+      "nameRequired": "Họ và tên là bắt buộc",
+      "phoneRequired": "Số điện thoại là bắt buộc",
+      "phoneInvalid": "Vui lòng nhập số điện thoại hợp lệ",
+      "addressRequired": "Địa chỉ giao hàng là bắt buộc",
+      "formErrors": "Vui lòng sửa các lỗi trong biểu mẫu"
+    }
+  },
+  "profile": {
+    "title": "Chào mừng, {{name}}",
+    "subtitle": "Quản lý tài khoản và xem lịch sử đơn hàng",
+    "tabs": {
+      "profile": "Hồ sơ",
+      "orders": "Lịch sử đơn hàng"
+    },
+    "personalInfo": "Thông tin cá nhân",
+    "personalInfoDesc": "Cập nhật chi tiết tài khoản và sở thích",
+    "edit": "Chỉnh sửa hồ sơ",
+    "saveChanges": "Lưu thay đổi",
+    "fields": {
+      "name": "Họ và tên",
+      "email": "Địa chỉ email",
+      "phone": "Số điện thoại",
+      "address": "Địa chỉ"
+    },
+    "placeholders": {
+      "name": "Nhập họ và tên",
+      "email": "Nhập địa chỉ email",
+      "phone": "Nhập số điện thoại",
+      "address": "Nhập địa chỉ"
+    },
+    "notProvided": "Chưa cung cấp"
+  },
+  "footer": {
+    "quickLinks": "Liên kết nhanh",
+    "contactInfo": "Thông tin liên hệ",
+    "allRightsReserved": "Bảo lưu mọi quyền"
+  }
+}

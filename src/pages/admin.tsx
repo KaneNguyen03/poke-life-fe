@@ -1,47 +1,47 @@
-// src/pages/Admin.tsx
+import React from "react"
 import Chat from "@/components/chat/chat"
-import Header from "@/components/ui/admin-component-layout/header"
-import Sidebar from "@/components/ui/admin-component-layout/side-bar"
+import { AdminHeader } from "@/layouts/admin/header"
+import { AdminSidebar } from "@/layouts/admin/sidebar"
 import { useAuth } from "@/hooks/use-auth"
+import { useAdminData } from "@/hooks/api/use-admin-data"
+import { useAdminUI } from "@/hooks/ui/use-admin-ui"
 import Dashboard from "@/layouts/layout-admin-ui/admin-dashboard"
 import { FoodManagement } from "@/layouts/layout-admin-ui/food-management"
 import { OrderManagement } from "@/layouts/layout-admin-ui/order-management"
 import { UserManagement } from "@/layouts/layout-admin-ui/user-management"
-import transactionApi from "@/services/transaction"
-import { Statistic } from "@/types"
-import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
 
-const Admin = () => {
+const Admin: React.FC = () => {
   const { user, logout } = useAuth()
-  const [activeTab, setActiveTab] = useState("Dashboard")
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true)
-  const [statistic, setStatistic] = useState<Statistic | null>(null)
-  const [isMonthlyView, setIsMonthlyView] = useState(true)
+  const { statistic } = useAdminData()
+  const { 
+    activeTab, 
+    setActiveTab, 
+    isSidebarOpen, 
+    toggleSidebar, 
+    isMonthlyView, 
+    setIsMonthlyView 
+  } = useAdminUI()
 
-  const fetchStatistic = async () => {
+  const handleLogout = async () => {
     try {
-      const response = await transactionApi.getStatistics()
-      if (response) {
-        setStatistic(response.data)
-      }
-    } catch (error) {
-      console.error("Failed to fetch statistic", error)
+      await logout()
+      toast.success('Logged out successfully!')
+    } catch {
+      toast.error('Error logging out')
     }
-  }
-
-  useEffect(() => {
-    fetchStatistic()
-  }, [])
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen)
   }
 
   const renderContent = () => {
     switch (activeTab) {
       case "Dashboard":
-        return <Dashboard statistic={statistic} isMonthlyView={isMonthlyView} setIsMonthlyView={setIsMonthlyView} />
+        return (
+          <Dashboard 
+            statistic={statistic} 
+            isMonthlyView={isMonthlyView} 
+            setIsMonthlyView={setIsMonthlyView} 
+          />
+        )
       case "User":
         return <UserManagement />
       case "Order":
@@ -54,15 +54,23 @@ const Admin = () => {
   }
 
   return (
-    <div className="flex h-screen bg-green-50">
-      <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} activeTab={activeTab} setActiveTab={setActiveTab} />
+    <div className="flex h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      <AdminSidebar 
+        isSidebarOpen={isSidebarOpen} 
+        toggleSidebar={toggleSidebar} 
+        activeTab={activeTab} 
+        setActiveTab={setActiveTab} 
+      />
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Header toggleSidebar={toggleSidebar} username={user?.Username} onLogout={() => {
-          logout()
-          toast.success('Logged out successfully!')
-        }} />
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
-          {renderContent()}
+        <AdminHeader 
+          toggleSidebar={toggleSidebar} 
+          username={user?.Username} 
+          onLogout={handleLogout} 
+        />
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-transparent">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            {renderContent()}
+          </div>
         </main>
       </div>
       <Chat />

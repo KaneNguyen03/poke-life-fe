@@ -1,5 +1,5 @@
-import PageIndexSelector from '@/components/pagination/page-index-selector'
-import PageSizeSelector from '@/components/pagination/page-size-selector'
+import { Pagination } from '@/components/common/pagination'
+import { PageSizeSelector } from '@/components/common/page-size-selector'
 import OrderDetailsModal from '@/components/ui/order-details-modal'
 import StatusModal from '@/components/ui/status-modal'
 import { AppDispatch, RootState } from '@/store'
@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import moment from 'moment'
-import numeral from 'numeral'
+import { formatCurrency } from '@/utils/formatters'
 
 export const OrderManagement = () => {
     const dispatch: AppDispatch = useDispatch()
@@ -40,7 +40,7 @@ export const OrderManagement = () => {
 
     useEffect(() => {
         fetchOrders()
-    }, [dispatch, pageIndex, pageSize, keyword])
+    }, [dispatch, pageIndex, pageSize, keyword]) // eslint-disable-line react-hooks/exhaustive-deps
 
     const handlePageChange = (page: number) => {
         setPageIndex(page)
@@ -132,7 +132,9 @@ export const OrderManagement = () => {
                                                 {order.OrderStatus}
                                             </span>
                                         </td>
-                                        <td className="px-6 py-4 whitespace-nowrap">{numeral(order.TotalPrice).format('0,0')} VND</td>
+                                                                                    <td className="px-6 py-4 text-sm font-medium text-gray-900">
+                                                {formatCurrency(parseFloat(order.TotalPrice))} VND
+                                            </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <button
                                                 className="text-indigo-600 hover:text-indigo-900 mr-2"
@@ -154,9 +156,9 @@ export const OrderManagement = () => {
                         </tbody>
                     </table>
                 </div>
-                <PageIndexSelector
-                    pageIndex={pageIndex}
-                    totalPages={pagination?.totalPages} // Safely access totalPages
+                <Pagination
+                    currentPage={pageIndex}
+                    totalPages={pagination?.totalPages || 1}
                     onPageChange={handlePageChange}
                 />
             </div>
