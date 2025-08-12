@@ -137,7 +137,7 @@ const Reviews = () => {
       </div>
 
       {/* Custom Styles for Slider */}
-      <style jsx>{`
+      <style>{`
         .slick-dots {
           bottom: -60px;
         }

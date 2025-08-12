@@ -1,4 +1,3 @@
-import { useAuth } from "@/hooks/use-auth"
 import foodApi from "@/services/food"
 import { addToCart } from "@/store/slice/cart-slice"
 import { APIFoodResponse } from "@/types"
@@ -9,7 +8,6 @@ import { useTranslation } from 'react-i18next'
 import { FaPlus, FaFire, FaLeaf, FaHeart, FaStar, FaSearch } from "react-icons/fa"
 
 export default function Menu() {
-    const { user } = useAuth()
     const { t } = useTranslation()
     const [food, setFood] = useState<APIFoodResponse[]>([])
     const [loading, setLoading] = useState(true)

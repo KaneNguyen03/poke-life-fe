@@ -4,7 +4,6 @@ import About from "@/components/ui/about"
 // import CustomDishes from "@/components/ui/custom-dishes"
 import Hero from "@/components/ui/hero"
 import { MenuSection } from "@/components/ui/menu-section"
-import Reviews from "@/components/ui/review"
 import { WorkoutSection } from "@/components/ui/workout"
 import { Element } from "react-scroll"
 

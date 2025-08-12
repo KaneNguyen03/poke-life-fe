@@ -1,8 +1,7 @@
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Button } from "antd"
 import { useState, useEffect } from "react"
-import { FaShoppingCart, FaTimes, FaUser, FaSearch, FaBell, FaStar } from "react-icons/fa"
+import { FaShoppingCart, FaTimes, FaUser, FaSearch } from "react-icons/fa"
 import { Link } from "react-scroll"
 import { useDispatch, useSelector } from 'react-redux'
 import CartModal from '@/components/card-modal'

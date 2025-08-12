@@ -5,12 +5,10 @@ import React, { useEffect, useState } from 'react'
 import { FaEye, FaEyeSlash, FaSpinner, FaGoogle, FaFacebook, FaEnvelope, FaLock, FaArrowRight } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { useTranslation } from 'react-i18next'
 
 export default function Login() {
   const { login, user } = useAuth()
   const navigate = useNavigate()
-  const { t } = useTranslation()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')

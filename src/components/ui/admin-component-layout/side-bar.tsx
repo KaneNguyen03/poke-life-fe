@@ -30,7 +30,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar, activeT
                         onClick={() => setActiveTab(item.name)}
                     >
                         <div className="flex items-center space-x-2">
-                            {item.icon}
+                            <item.icon />
                             <span>{item.name}</span>
                         </div>
                     </a>
